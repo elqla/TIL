@@ -11,7 +11,7 @@ class Person:
 
 p1 = Person('다빈', 98)
 print(p1.get_age)     #<bound method Person.get_age of <__main__.Person object at 0x00000296786BBD30>>
-
+print(p1.get_age())   #98  
 
 #class가 가지는 여러 멤버함수들은, self를 첫번째 입력인자로 가진다.
 #이는 이 함수가 어떤 클래스에 속해있는 method라는 의미이며
@@ -36,7 +36,7 @@ p1.talk()        #말말말
 #p1.eat()        #TypeError: eat() takes 0 positional arguments but 1 was given
                 #input값을 가지지 않는 메서드는 unbound method라고 한다.
 
-##의문점 : init으로 정의된 것은 호출하지 않아도 되는건가?
+##의문점 : init으로 정의된 것은 호출하지 않아도 되는건가? 왜 호출 안해도 출력이 되지
 class Person:
     def __init__(self, name):
         self.name = name
@@ -44,8 +44,8 @@ class Person:
     def talk(self):
         print(f'안녕, 나는 {self.name}')
 
-p1 = Person("다빈")    #여기에서 이미 생성자를 호출함 ! p1 = Person()          ,.......?
-print(p1.name)   #다빈  #그래서 그냥 p1.name을 프린트만 해줘도 호출이 이미 되었기 때문에,, init(생성자)는 호출이 없이 나올 수 있는것 같다 !
+p1 = Person("다빈")    #여기에서 일단 생성자를 호출함 ! p1 = Person()     
+print(p1.name)   #다빈  ############ name 은 속성이니까 호출없이 나온다 ############
 p1.talk()        #안녕, 나는 다빈
 
 
