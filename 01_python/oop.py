@@ -36,7 +36,14 @@ p1.talk()        #말말말
 #p1.eat()        #TypeError: eat() takes 0 positional arguments but 1 was given
                 #input값을 가지지 않는 메서드는 unbound method라고 한다.
 
-##의문점 : init으로 정의된 것은 호출하지 않아도 되는건가? 왜 호출 안해도 출력이 되지
+##의문점 : init으로 정의된 것은 호출하지 않아도 되는건가? 
+class Person:
+    def __init__(self):
+        print("생성")
+p1 = Person()      #생성자 메소드 : 인스턴스 객체가 생성될 때 자동으로 호출되는 메소드 !
+                                #인스턴스 변수들의 초기값을 설정
+
+
 class Person:
     def __init__(self, name):
         self.name = name
