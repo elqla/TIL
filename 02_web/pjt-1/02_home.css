@@ -1,0 +1,13 @@
+/* 02_home.css */
+/* 아래에 코드를 작성해 주세요. */
+.boxoffice{
+display: flex;
+justify-content: center;
+margin: 1rem;
+font-weight: bolder;
+}
+
+
+.col{
+  width: 500px;
+}
