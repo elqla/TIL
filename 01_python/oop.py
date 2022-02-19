@@ -53,7 +53,7 @@ class Person:
 
 p1 = Person("다빈")    #여기에서 일단 생성자를 호출함 ! p1 = Person()     
 print(p1.name)   #다빈  ############ name 은 속성이니까 호출없이 나온다 ############
-p1.talk()        #안녕, 나는 다빈
+p1.talk()        #안녕, 나는 다빈 ### 함수 ####
 
 
 #의문점 2
@@ -66,7 +66,7 @@ class Person:
         return self._age
 
 p1 = Person(10)
-#print(p1.age())  #메서드(함수)니까 호출하면,,오류뜸 
+#print(p1.age())  #메서드(함수)라서 호출해야 하는데 
 print(p1.age)     #데코레이터 때매 더이상 메서드를 의미하는게 아님
                  #메서드를 정의했는데, 실제론 속성처럼 쓰인다.
 
@@ -169,7 +169,7 @@ print("=======================")
 '''
 class MyClass:
     @classmethod
-    def class_method(cls, arg1, arg2):
+    def class_method(cls, arg1, arg2):  ##self처럼 cls전달
         return cls
 
 # 자동으로 첫 번째 인자로 클래스(MyClass)가 들어갑니다.
@@ -250,18 +250,22 @@ class MyClass:
     # 인스턴스 메서드 : 인스턴스를 조작하고 싶어
     # (파이썬제작자) 함수 내부에 인스턴스를 던져주도록 설계
     # 메서드를 정의할 때 self로 받도록 
+    # 클래스 상태를 수정할 수도 있음
     def instance_method(self):
         return self 
     
     # 클래스 메서드 : 클래스를 조작하고 싶어
     # (파이썬제작자) 함수 내부에 클래스를 던져주도록 설계 
     # 메서드를 정의할 때 cls로 받도록
+    # 객체 인스턴스 상태를 수정할 수 없음
     @classmethod
     def class_method(cls):
         print(cls.var)
         return cls
     
     # 스태틱 메서드 : 클래스나 인스턴스를 조작할 생각은 없는데 함수를 쓸거야
+    # self, 매개변수 사용 XXXX 
+    # 일반 함수처럼 동작하지만, 클래스의 이름공간에 귀속됨
     @staticmethod
     def static_method():
         return ''
@@ -276,13 +280,36 @@ print("=======================")
 class Person:
     species = 'human'
     
-    def __init__(self, name):
+    def __init__(self, name):       #클래스 이름공간
         self.name = name 
         
-p1 = Person('Hong')
+p1 = Person('Hong')              #인스턴스별 이름공간
 p2 = Person('Choi')
 print(p1.name)
 print(p2.name)
+
+
+
+class Person:
+    name = 'unknown'
+    def talk(self):
+        print(self.name)
+p1 = Person()
+p1.talk()   #unknown  인스턴스 변수 정의되있지 않아서
+
+
+p2 = Person()
+p2.talk()      #unknown
+p2.name='kim'
+p2.talk()      #kim
+
+
+print(Person.name)  #unknown
+print(p1.name)
+print(p2.name) #kim
+
+
+
 
 
 print("=======================")
