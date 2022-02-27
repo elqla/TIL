@@ -24,7 +24,7 @@ for i in range(N):
                     if arr[i][j+k] != arr[i][j-k+m-1]:
                         break
                 else:
-                    lst = arr[i][j:j + m]
+                    lst = arr[i][j:j+m]
                     return lst
         return []
     
@@ -53,6 +53,41 @@ for M in range(100, 1, -1):  #1전까지 ! (1은 무조건 회문)  #회문길�
             
             lst[i][j:j+M] == lst[i][j:j+M][::-1] #두개가 팰린드롬인지도 알수 있음
 ```
+
+`회문2활용`
+
+```python
+for tc in range(1, 11):
+    n = 100
+    t = int(input())
+    arr = [list(input()) for _ in range(100)]
+
+
+    def palindrome(arr, n):
+        for m in range(100, 0, -1):
+            for i in range(n):
+                for j in range(n-m+1):
+                    for k in range(m//2):
+                        if arr[i][j+k] != arr[i][j+m-k-1]:
+                            break
+                    else:
+                        lst = arr[i][j:j+m]
+                        return lst
+
+
+    res = palindrome(arr, n)
+    arr = list(map(list, zip(*arr)))
+    res2 = palindrome(arr, n)
+
+    mx = []
+    for r in (res, res2):
+        if len(r) > len(mx):
+            mx = r
+
+    print(f'#{t} {len(mx)}')
+```
+
+
 
 ---
 
