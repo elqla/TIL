@@ -1,0 +1,26 @@
+1. venv는 git으로 관리하지 않는다
+
+```
+git ignore.io---
+windows, visualstudiocode, python, django, venv ------>txt로 (파일명: .gitignore)
+(깃 인잇하고 add 전에 .gitignore를 통해 관리하지 않겠다고 함)
+```
+
+
+
+2. requirements.txt를 사용하여 라이브러리 목록만 관리한다.
+
+```
+가상환경 설정된곳에서
+vscode-> bash
+$ pip freeze > requirements.txt
+$ ls
+$ pip list   (as,,dj ,,pytz,,sqiparse .... 저장됨)
+
+```
+
+
+3. 설치하기
+$ ls
+$ pip install -r requirements.txt
+$ pip list
