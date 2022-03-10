@@ -78,6 +78,11 @@ from django.db import models
 class Article(models.Model):  #상속받기
     title = models.CharField(max_length=10)  #char, string!
     content = models.TextField() #길이 제한이 없는 text field
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.title
+
 ```
 
 - 각 모델은 dhango.models.Model 클래스의 서브클래스로 표현됨
@@ -162,8 +167,8 @@ $python manage.py showmigrations
 #$ python manage.py sqlmigrate app_name 0001
 $ python manage.py sqlmigrate articles 0001 
 
-# CREATE TABLE "articles_article" ("id" integer NOT NULL PRIMARY
-# KEY AUTOINCREMENT, "title" varchar(10) NOT NULL, "content" text NOT NULL);
+CREATE TABLE "articles_article" ("id" integer NOT NULL PRIMARY
+KEY AUTOINCREMENT, "title" varchar(10) NOT NULL, "content" text NOT NULL);
 
 # $ python manage.py showmigrations 하면 설계도가 만들어진게 보이고
 #[]되어서, 체크 안되있는건, migrate되지 않은 것(db에 반영되지 않은상태)
@@ -228,9 +233,14 @@ $python manage.py showmigrations
 
 
 
-### DATABASE API
+### DATABASE API  
+
+- `여기 건너띄고, admin해서, 그 창에서 게시물 만들수도 있음 `
+
+
 
 - django가 기본적으로 orm을 제공함에 따른 것으로 db를 편하게 조작할 수 있도록 도움
+
 - 모델을 만들면, 장고는 객체를 만들어 읽고 수정할 수 있는 data-abstract API를 자동으로 만듦
 
 - DB API 구문-making queries
@@ -299,7 +309,7 @@ Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 일컬
 ```python
 $ python manage.py shell_plus 
 #create
-#특정 테이블에 새롱누 행을 추가해여 데이터 추가
+#특정 테이블에 새로운 행을 추가해여 데이터 추가
 In [2]: article = Article()  # 인스턴트 생성 #Article(class)로 부터 article(instance)
 
 In [3]: article.title = "first"  #인스턴스 변수(title)에 값을 할당
@@ -365,7 +375,7 @@ class Article(models.Model):
     
    ####이거 ! 
     def __str__(self):
-        return f"제목 : {self.title}"
+        return f"제목 : {self.title} 내용: {self.content}"
    
     def __str__(self):
         return self.title #둘중하나 써보기
@@ -374,7 +384,7 @@ $ python manage.py shell_plus
 
 $ Article.objects.get(pk=1)
 In [1]: Article.objects.all()
-Out[1]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : second>, <Article: 제목 : thired>]>
+Out[1]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : second>, <Article: 제목 : third>]>
 ```
 
 `READ`
@@ -396,17 +406,19 @@ get()
 
 #객체를 찾을 수 없으면 DoesNotExist예외를 발생시키고, 둘 이상의 객체 찾으면 MultipleObjectsReturned 예외 발생
 #따라서, primary key와 같이 고유성을 보장하는 조회에서 사용해야함
-Article.objects.get(pk = 1)
+Article.objects.get(pk = 1) #이렇게 쓸 수 있다..!
+
 In [3]: article=Article(title="first",content="haha")
 
 In [4]: article.save()
-
+--
 In [5]: Article.objects.get(title="second")
 Out[5]: <Article: 제목 : second>
 
 In [6]: Article.objects.get(title="first")
 ---------------------------------------------------------------------------
-MultipleObjectsReturned    #지금 first라는게 두개가 있어서 값을 가져올 수 없음 (second 는 하나라서 가능)
+MultipleObjectsReturned: get() returned more than one Article -- it returned 2!
+#지금 first라는게 두개가 있어서 값을 가져올 수 없음 (second 는 하나라서 가능)
 ```
 
 ![image-20220308133344076](images/image-20220308133344076.png).
@@ -441,7 +453,7 @@ article.title
 >>'byebye'
 ```
 
-`delate`
+`delete`
 
 - Queryset의 모든 행에 대해 SQL삭제 쿼리를 수행하고, 
 
@@ -557,7 +569,7 @@ In [33]: article.save()
     - QuerySet 메서드 filter(), exclude() 및 get()에 대한 키워드 인수로 지정됨
 
 ```python
-In [34]: Article.objects.filter(pk__gt=2) ##(id가 2보다 큰거 ?)
+In [34]: Article.objects.filter(pk__gt=2) ##(id가 2보다 큰거)
 Out[34]: <QuerySet [<Article: 제목 : thired>, <Article: 제목 : first>, <Article: 제목 : firstssssss>]>#
     
 In [34]: Article.objects.filter(content__contains='ja')
@@ -667,7 +679,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 admin.site.register(Article, ArticleAdmin)
 
-#admin.site.register(Article)
+#admin.site.register(Article)  해서 등록했음 (처음에)
 ```
 
 ![image-20220308161530945](images/image-20220308161530945.png).
@@ -688,7 +700,7 @@ admin.site.register(Article, ArticleAdmin)
 
 3. 앱등록
 
-
+### 교재 보면서 따라해보기
 
 - base 템플릿 작성 및 추가 템플릿 경로 등록
 
@@ -738,7 +750,6 @@ urlpatterns = [
 
 ```python
 #articles/views.py
-from multiprocessing import context
 from django.shortcuts import render
 from .models import Article    #view는 article을 몰라... ######READ-전체 게시글 조회
 # Create your views here.
@@ -851,6 +862,47 @@ def catch(request):
     - crud에서 R역할
   - POST
     - 서버로 데이터를 전송할 떄 사용
-    - 리소스를 생성/변경하기 위해 데이터를 HTTP body에 담아 전송
+    - 리소스를 생성/변경하기 위해 데이터를 HTTP <u>body</u>에 담아 전송
     - 서버에 변경사항 만듦
-    - CUD 담당
+    - CUD 담당 /create, update, delate
+
+
+
+---
+
+`마무리`
+
+- model
+  - 웹 애플리케이션의 데이터를 구조화하고 조작하기 위한 도구
+- database
+  - 체계화된 데이터의 모임(집합)
+  - 행, 열로 이루어진..
+- migrations
+  - django가 model에 생긴 변화를 반영하는 방법
+
+- ORM
+
+  - oop언어를 사용하여 데이터베이스와 oop언어간의 호환되지 않는 데이터를 변환하는 프로그램링 기법
+
+- database API
+
+  - db를 조작하기 위한 도구(Quertset, )
+
+  ```python
+  #1
+  article = Article()
+  article.title = ""
+  article.content = ""
+  article.save()
+  
+  
+  #2
+  article = Article(title="", content="")
+  article.save()
+  
+  #3
+  Article.objects.create(title="", content="")
+  ```
+
+- admin site
+  - 사용자가 아닌 서버의 관리자가 활용하기 위한 페이지

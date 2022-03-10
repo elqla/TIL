@@ -20,7 +20,7 @@ $ pip list   (as,,dj ,,pytz,,sqiparse .... 저장됨)
 ```
 
 
-3. 설치하기
+3. 가상환경 만들고, 설치하기
 $ ls
 $ pip install -r requirements.txt
 $ pip list

@@ -9,16 +9,22 @@
 
   - 모든 상황에서 모든 사용자에게 동일한 정보 표시
   - Html, Css, Javascript
-
 - dynamic web page - 요청을 받아, 추가적인 처리과정 이후 클라이언트에 응답을 보냄
 
   - 방문자와 상호작용, 페이지내용 때에따라 다름
-
   - 서버 사이드 프로그래밍언어(python, java, c++..)
-
   - 파일 처리, 데이터베이스와의 상호작용
 
-    
+- `요청`이 들어오면 웹서버가 `응답`해야하는데, html은 정적인 내용임. 그래서 클라이언트의 유저가 다를때 요청에 따라 다른 응답을 해야함./ 이를 만들어내는 프로그램이 필요하며 web aplication이라고 함
+
+  - 파이썬으로 요청을 받아, 응답하는 프로그램을 짜고 싶다
+
+    - 요청과 응답을 자동으로 하고, 개발자는 응답할 내용을 작성!
+
+      ㄴFramework
+
+      - 파이썬을 실행하기 위한 web framework: django
+      - 자바: spring Framework
 
 - framework 구조  - MVC (model - view - controller)
 
@@ -32,6 +38,12 @@
   ##### MTV pattern
 
   ![image-20220302092534856](images/image-20220302092534856.png)
+
+  ```python
+  model: 요청처리, 로직 수행
+  ---
+  urls.py(요청 파악, 함수 호출)  --->  view(필요한 데이터 확인)  <-- Template(결과)
+  ```
 
   
 
@@ -83,11 +95,14 @@
 1. 가상환경 생성, 활성화
 
    ```bash
+   git ignore
    $ python -m venv [가상환경이름]   
    $ source [가상환경이름]/Scripts/activate 
    (가상환경이름)
    $
    $ ctrl shift p -> python interpreter 활성화.. (f1)
+   $ source venv/Scripts/activate (가성환경 활성화)
+   pip list
    # $ deactivate (비활성화, 사용할 일 없음)
    ```
 
@@ -96,7 +111,17 @@
 2. 장고 설치
 
    ```bash
+   pip install -r requirements.txt
+   ---
    pip install django==3.2.12
+   pip list
+   ---
+   pip list
+   #라이브러리 설치
+   $ pip install ipython
+   $ pip install django-extensions  #하이픈###---###
+   # more powerful interactive shell을 위한 2가지 라이브러리 설치
+   $ pip freeze > requirements.txt(그냥 바로 해줘도 됨) 
    ```
 
    
@@ -105,6 +130,23 @@
 
    ```bash
    django-admin startproject firstpjt .
+   ls #manage.py
+   #firstpjt . 하면 현재 폴더가 가상환경이 되는 것 ?
+   # pjtname/  manage.py*  venv/
+   ---
+   #외부라이브러리이기 때문에
+   #우리꺼, 외부 라이브러리, 장고순 등록
+   #settins.py
+   INSTALLED_APPS = [
+       'articles',
+       'django_extensions',  #언더바
+   ```
+
+   ```
+   git init
+   git add .
+   git commit -m 'firstcommit'
+   git log --oneline
    ```
 
    
@@ -128,8 +170,8 @@
 
 6. 앱 생성 후 등록  (url, view, templates)
 
-   ```bash
-   #애플리케이션 등록
+   ```python
+   #애플리케이션 등록 (만든 앱을 pjt에 알림)
    project안의 settings.py의 Installed_apps에 'application', 
    										##local app, third party apps, django apps 순서
    #url과 view mapping
@@ -140,9 +182,20 @@
    (그럼 articles의 view에)
    
    #view함수 작성, 관련된 html 파일 랜더
-   def index(request):
+   def index(request):  #요청이 들어오면 실행할 method   #요청처리...> 응답 생성 및 반환
        return render(request, 'index.html')  (템플릿 index.html 만들어야함 !ㄱ)
+   			#render(request, '템플릿'): 템플릿을 이용해서 응답을 만들어주는 함수
+       				#템플릿의 위치: app/templates/템플릿
    view와 같은 위치인 articles안에 templates(폴더)를 만들고 index.html 을 만들어줌  #html파일 만들기
+   #템플릿 : 응답을 위한 기초 구조
+   
+   
+   #urls.py
+   from pages import views  #views가 다른 폴더에 있으니까 pages에서 views를 import해옴
+   urlpatterns = [
+       path('admin/', admin.site.urls),
+       path('hello/', views.greeting),
+   ]
    
    --
    python manage.py runserver
@@ -151,6 +204,29 @@
    http://127.0.0.1:8000/index/
    
    ```
+
+   ```python
+   #project_urls.py
+   from django.contrib import admin
+   from django.urls import path, include
+   
+   urlpatterns = [
+       path('admin/', admin.site.urls),
+       path('articles/', include('articles.urls')),
+   ]
+   #app_urls.py
+   from django.urls import path
+   from . import views
+   
+   app_name="articles"
+   urlpatterns = [
+       path('', views.index, name="index"),
+       path('new/', views.new, name="new"),
+       path('create/', views.create, name="create"),
+       ]
+   ```
+
+   
 
 7. 추가설정
 
@@ -167,7 +243,7 @@
    search <django settings - language>
    ```
 
-
+=> [model](03_model.md)
 
 # templete (presentation)
 
@@ -373,11 +449,18 @@
 
 #### skeleton template 
 
+- 템플릿 상속은 기본적으로 코드의 재사용성에 초점을 맞춤
+
+- 템플릿 상속을 사용하면 사이트의 모든 공통 요소를 포함하고, 하위 템플릿이 재정의(override) 할 수있는 블록을 정의하는 기본 “skeleton” 템플릿을 만들 수 있음
+
 ```python
 templates folder (folder를 앱, pjt와 나란히) with base.html
 
 #settings.py
-TEMPLATES의 DIRS : [BASE_DIR / 'templates',],   //파이썬의 객체지향 파일시스템
+TEMPLATES = [{
+        'DIRS': [BASE_DIR / 'templates',],}] #templates상속을 위해 추가해준다.
+INSTALLED_APPS = [
+    'movies',]  #app추가
 ```
 
 ```django
@@ -575,11 +658,19 @@ request method: 리소스가 수행할 작업 (GET, POST, PUT, DELETE.....)
   #index.html
   {% extends 'vase.html' %}
   {% block content %}
-  	<a href="{% url 'greeting' %}">greeting</a>
-  	<a href="{% url 'dinner' %}">dinner</a>
-  	<a href="{% url 'dtl_practice' %}">dtl_practice</a>
-  	<a href="{% url 'throw'%}">throw</a>
+    <a href="{% url 'articles:greeting' %}">greeting</a>
+    <a href="{% url 'articles:dinner' %}">dinner</a>
+    <a href="{% url 'articles:throw' %}">throw</a>
+    <a href="{% url 'articles:dtl_practice' %}">dtl_practice</a>
+  
   {% endblock content %}
   <!-- -->
   <a href="{url 'index'}">뒤로</a>
   ```
+  
+  ```django
+  <form action="{% url 'articles:catch' %}" method="GET">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  ```
+  
+  
