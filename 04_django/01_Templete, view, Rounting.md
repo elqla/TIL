@@ -138,7 +138,7 @@
    #우리꺼, 외부 라이브러리, 장고순 등록
    #settins.py
    INSTALLED_APPS = [
-       'articles',
+       #'articles', #지금 등록 X
        'django_extensions',  #언더바
    ```
 

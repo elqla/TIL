@@ -40,6 +40,21 @@ def index(request):
 
 
 
+### 헷갈리는 개념 잡기
+
+```python
+# url: namespace 분리(app_name의 name url을 실행시켜줘)
+return redirect('articles:detail', article.pk)
+# redirect:url로 요청을 보내줘
+
+-------------------------------------------------------
+# rendering
+return render(request, 'articles/detail.html', context)
+# articels 템플릿 안에 있는걸 찾을건데(물리적인 위치) detail.html 파일을 렌더링
+```
+
+
+
 ### 2. static files
 
 - url에 있는 자원(resource)를 요청(http request)받아 제공(serving)하는 응답(http response)을 처리:: 기본동작
