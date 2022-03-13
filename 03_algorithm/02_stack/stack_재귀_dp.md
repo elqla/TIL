@@ -11,7 +11,6 @@
 - size: 스택의 크기 저장하는 데이터
 - items: 스택에 담길 데이터를 저장할 데이터구조
 
-
 `연산`
 
 - CreateStack: 스택을 생성하는 연산 , size 필요
@@ -28,9 +27,8 @@
 ```python
 def push(item):
     s.append(item)
-ㅁㅁㅁ...  #마지막에 저장된거부터 꺼낼수 있는 구조인가?
-a b c... (세로)
----
+ #마지막에 저장된거부터 꺼낼수 있는 구조인가?
+----------------------------------------------------------
 stack = []
 stack.append(10)
 stack.append(20)
@@ -38,6 +36,7 @@ print(stack.pop()) #pop(-1)
 print(stack.pop())
 #20
 #10
+#append, pop 은 느림
 ```
 
 ```python
@@ -48,13 +47,13 @@ def push(item, size):#넘치면 안됨
         print('overflow')
     else:
         stack[top] = item
-size = 10
+size = 10      #크기가 정해진 스택을 만들어 사용하기
 stack = [0]*size
 top = -1
---
+---------------------------------------------------------------
 push(10, size)
 top += 1  		#push(20)  가 필요한 부분에 top +=1
-stack[top] = 20 #20을 변수에 저장해 !  ##속도도 빠름.
+stack[top] = 20 #20을 변수에 저장해 !  ##함수 호출도 안해서 속도도 빠름.
 ```
 
 - append, pop은 조금 느림
@@ -77,14 +76,14 @@ def pop():
         print('underflow')
         return 0
     else:
-        top -= 1  #있으면 top -=1
+        top -= 1  #있으면 top -=1 pop  할거니까
         return stack[top+1]  #-=1된(pop) 자리 리턴
 print(pop())
---
+--------------------------------------------------------
 if top >-1:   #pop()
     top -=1 #탑하나 감소시키고			  print(stack[top])
     print(stack[top+1])  #그냥 꺼내면 됨   top -=1 
-    
+------------------------------------------------------
 ---#자주쓰임
 while top>=0:   #pop()
     n = stack[top]
@@ -111,9 +110,11 @@ while top>=0:   #pop()
 
 > 함수 끝났을때 돌아올 곳의 정보도 같이 저장
 >
-> 이해하고 넘어가기 ! -> 함수 호출이 많으면 오래걸림, 적절한 함수 호출깊이 유지하기
+> 함수 호출이 많으면 오래걸림, 적절한 함수 호출깊이 유지하기(깊으면, 그만큼 호출이 많아짐)
 >
-> 함수를 묶어서 만들면 관리가 힘듦. 함수를 적당히 나눠놓는게 더 좋음 !
+> 그리고 이렇게 함수를 묶어서 만들면 관리가 힘듦.
+>
+> 따라서, 함수를 적당히 나눠놓는게 더 좋음 !
 
 ---
 
@@ -131,6 +132,32 @@ n! = n x (n-1)!
 ![image-20220221145953707](stack_%EC%9E%AC%EA%B7%80_dp.assets/image-20220221145953707.png)
 
 - 호출될때마다 메모리 영역이 분리됨
+
+  ```python
+  fact(n):
+      if n==1:
+          return 1
+      else:
+          return n*fact(n-1)
+  ```
+
+  ```python
+  4-a
+   -b..  fact(a)
+   --------4
+  4 | n fact(n)
+  	  fact(n-1)    4*6 = 24
+  ---------3
+  3 | n fact(n)
+  	  fact(n-1)    3*2
+  ---------2
+  2 | n fact(n)
+  	 fact(n-1)     2*1
+  --------1
+  1 | n fact(n) ____ 거꾸로 올라감
+  ```
+
+  
 
 ```python
 #피보나치
@@ -250,17 +277,6 @@ def fibo2(n):
 
 ---
 
-### DFS(깊이우선탐색)   
-
-- 비선형구조인 그래프 구조는모든 자료를 빠짐없이 검색하는 것이 중요
-  - 스택, 재귀, 그래프....
-- 깊이우선탐색(DFS) 
-  - 재귀, 반복으로 할 수 있는데 반복으로 할때 스택을 사용함.
-  - 마지막에 저장된 것부터 꺼내는 방법으로 탐색
-- 너비우선탐색(BFS) - 큐
-
----
-
 ```python
 class Stack:
     def __init__(self, size):
@@ -317,5 +333,45 @@ print(my_stack.is_empty())
 #stack.append()
 #stack.pop()
 #stack[-1]
+```
+
+---
+
+`연결리스트를 이용한 스택 ADT`
+
+```python
+#연결리스트를 담을 node class
+class Node:
+    def __init__(self, item, next):
+        self.item = item
+        self.next = next
+        # 노드의 값, item
+        # 다음 노드를 가리키는 포인터 next
+class Stack:
+
+    def __init__(self):
+        self.last = None
+
+    def push(self, item):
+        self.last = Node(item, self.last)
+    # 연결리스트에 요소를 추가하면서, 가장 마지막 값을 next로 지정하고
+    # 포인터인 last가장 마지막으로 이동시킨다.
+
+
+    def pop(self):
+        item = self.last.item
+        self.last = self.last.next
+        return item
+
+
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+stack.push(5)
+
+for _ in range(5):
+    print(stack.pop())
 ```
 

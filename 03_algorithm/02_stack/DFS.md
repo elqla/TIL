@@ -60,7 +60,7 @@ pop() =>5...
 input_str = "1, 2, 1, 3, 2, 4, 2, 5, 4, 6, 5, 6, 6, 7, 3, 7"
 
 
-lst = list(map(int, input_str.split(", ")))
+lst = list(map(int, input_str.split(", ")))  #len(lst)//2 = 간선의 개수
 
 
 # 2칸씩 띄워서 index 가져오기
@@ -190,7 +190,45 @@ while stack:
 print(visited)   #[1, 2, 4, 6, 5, 7, 3]
 ```
 
+```python
+'''
+7 8(정점의 개수, 간선의 개수)
+1 2 1 3 2 4 2 5 4 6 5 6 6 7 3 7
+
+'''
+
+V, E = map(int, input().split())
+arr = list(map(int, input().split()))
+adj = [[0]*(V+1) for _ in range(V+1)]
+for i in range(E):
+    n1, n2 = arr[i*2], arr[i*2+1]
+    adj[n1][n2] = 1     # n1과 n2는 인접
+    adj[n2][n1] = 1     # 방향 표시가 없는 경우
+print()
+
+
+V, E = map(int, input().split())
+arr = list(map(int, input().split()))
+adj = [[0]*(V+1) for _ in range(V+1)]
+adjList = [[] for _ in range(V+1)]
+for i in range(E):
+    n1, n2 = arr[i*2], arr[i*2+1]
+    adjList[n1].append(n2)
+    adjList[n2].append(n1)
+print()
+```
+
 ---
+
+---
+
+---
+
+---
+
+---
+
+
 
 ```python
 input_str = "1, 2, 1, 3, 2, 4, 2, 5, 4, 6, 5, 6, 6, 7, 3, 7"
@@ -244,8 +282,6 @@ print(visited)
 
 
 
-
-
 # 반복 + stack을 이용해 DFS를 배워보았따.
 # 반복 : 재귀의 자기 자신 반복
 # stack : 재귀의 call stack
@@ -287,7 +323,7 @@ print(visited)
 #인접한 정점중에 알파벳 순서가 빠른것 부터 (혹은 지정된 순서부터) (규칙은 정하기 나름)
 def iterative_dfs(start_v):
     discoverd = []
-    stack = [start_v]  #여기를 거쳐갔어...!. 헨젤과 그레텔이 뿌린 과자..@
+    stack = [start_v]  #여기를 거쳐갔어...
     while stack:
         v = stack.pop()
         if v not in discoverd:  # 만약 v를 방문하지 않았다면
