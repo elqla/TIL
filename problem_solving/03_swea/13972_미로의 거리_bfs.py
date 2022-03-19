@@ -1,24 +1,3 @@
-'''
-3
-5
-13101
-10101
-10101
-10101
-10021
-5
-10031
-10111
-10101
-10101
-12001
-5
-00013
-01110
-21000
-01111
-00000
-'''
 # sti, stj = -1, -1
 # for i in range(n):
 #     for j in range(n):
@@ -62,6 +41,7 @@ t = int(input())
 for tc in range(1, t+1):
     n = int(input())
     maze = [list(map(int, input())) for _ in range(n)]
+    #print(maze)
     sti, stj = fstart(n)
     ans = bfs(sti, stj, n)
     print(f'#{tc} {ans}')
@@ -73,7 +53,27 @@ for tc in range(1, t+1):
 
 
 
-
+'''
+3
+5
+13101
+10101
+10101
+10101
+10021
+5
+10031
+10111
+10101
+10101
+12001
+5
+00013
+01110
+21000
+01111
+00000
+'''
 
 
 
