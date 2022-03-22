@@ -5,13 +5,13 @@ for tc in range(1, t + 1):
 
     import heapq
 
+    # 들어오는 값보다 부모값이 커야함
     heap = []
     for i in tree:
         heapq.heappush(heap, i)
 
 
-
-    #heapq.heapify(tree)  # 최소힙
+    # heapq.heapify(tree)  # 최소힙
 
     heap = [0] + heap  # idx 맞춰주기
 

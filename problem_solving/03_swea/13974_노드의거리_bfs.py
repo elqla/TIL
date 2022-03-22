@@ -1,27 +1,33 @@
-from collections import deque
+from collections import deque, defaultdict
 
-def dfs(S, G, v):  # start
-    visited = [0] * (v + 1)
-    q = deque([S])
+
+def bfs(v, S, G):
+    visited = [0] * (v + 1)  # idx
+    q = deque()
     visited[S] = 1
-    while q:  # visited[G]==0설정해서, 방문하면 while문이 끝났을때로 설정할 수 있음
+    q.append(S)
+    while q:
         t = q.popleft()
-        for g in grid[t]:
-            if not visited[g]:
-                q.append(g)
-                visited[g] = visited[t] + 1
-            if G==g:
-                return visited[G] - 1
+        for v in dic.get(t):
+            if not visited[v]:
+                visited[v] = visited[t] + 1
+                q.append(v)
+            if v==G:
+                return visited[v]-1
 
     return 0
 
 
-t = int(input())
-for tc in range(1, t+1):
+for tc in range(1, int(input())+1):
     v, e = map(int, input().split())
-    # v개의 노드개수 # 방향성 없는 e개의 간선정보
-
-    grid = [[] for _ in range(v+1)]
+    #노드개수, 간선정보
+    dic = defaultdict(list)
+    for _ in range(e):
+        a, b = map(int, input().split())
+        dic[a] += [b]
+        dic[b] += [a]
+    '''   
+    grid = [[] for _ in range(v+1)]  #idx를 맞춰서, dictionary를 안써도 됨
     for _ in range(e):
         s, g = map(int, input().split())
         grid[s].append(g)
@@ -30,7 +36,13 @@ for tc in range(1, t+1):
 
     a = dfs(S, G, v)
     print(f'#{tc} {a}')
+    '''
 
+    S, G = map(int,input().split())
+    res = bfs(v, S, G)
+
+
+    print(f'#{tc} {res}')
 
 
 
@@ -60,4 +72,5 @@ for tc in range(1, t+1):
 5 3
 7 8
 1 9
+
 '''
