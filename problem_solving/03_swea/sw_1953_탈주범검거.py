@@ -57,24 +57,43 @@ for tc in range(1, t+1):
         cnt += v.count(1)
     print(f'#{tc} {cnt}')
 
+    pipe = [[0, 0, 0, 0], [1, 1, 1, 1], [1, 1, 0, 0], [0, 0, 1, 1], [1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 1, 0],
+            [1, 0, 1, 0]]
+    di, dj = (-1, 1, 0, 0), (0, 0, -1, 1)
+    opp = [1, 0, 3, 2]
 
-    # l-=1
-    # while l>0:
-    #     for i in range(len(q)):
-    #         x, y = q[i]
-    #         k = arr[x][y] #key 임시저장
-    #         for dx, dy in dic.get(k):
-    #             nx, ny = x+dx, y+dy
-    #             if 0<=nx<n and 0<=ny<m and arr[nx][ny]!=0 and not visited[nx][ny]: # 터널이 있을때
-    #                 # 그 터널이 갈수 있는곳이려면 양방향이여야 함
-    #                 tmp = delta.index((dx, dy)) # 만일 (1, 0) 이면 idx 0
-    #                 dt = opposite[tmp] # 델타는 반대 즉, 1을 가짐
-    #                 if delta[dt] in dic.get(arr[nx][ny]):
-    #                     visited[nx][ny] = 1 + visited[x][y]
-    #                     q.append((nx, ny))
+
+    # def BFS(N, M, si, sj, L):
+    #     q = []
+    #     v = [[0] * M for _ in range(N)]
     #
-    #     l-=1
-    # print(f'#{tc} {len(q)}')
+    #     q.append((si, sj))
+    #     v[si][sj] = 1
+    #     cnt = 1
+    #
+    #     while q:
+    #         ci, cj = q.pop(0)
+    #
+    #         if v[ci][cj] == L:
+    #             return cnt
+    #
+    #         for k in range(4):
+    #             ni, nj = ci + di[k], cj + dj[k]
+    #             if 0 <= ni < N and 0 <= nj < M and v[ni][nj] == 0 and \
+    #                     pipe[arr[ci][cj]][k] and pipe[arr[ni][nj]][opp[k]]:
+    #                 q.append((ni, nj))
+    #                 v[ni][nj] = v[ci][cj] + 1
+    #                 cnt += 1
+    #     return cnt
+    #
+    #
+    # # T = 10
+    # T = int(input())
+    # for test_case in range(1, T + 1):
+    #     N, M, R, C, L = map(int, input().split())
+    #     arr = [list(map(int, input().split())) for _ in range(N)]
+    #     ans = BFS(N, M, R, C, L)
+    #     print(f'#{test_case} {ans}')
 
 
 '''
