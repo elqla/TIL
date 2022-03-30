@@ -118,7 +118,7 @@
 - 3가지의 기본적인 순회방법
   - 전위순회: VLR
     - 부모노드 방문 후, 자식을 좌, 우 순서로 방문
-  - 중위 순회: LVR  (----->방향, 부모를 확인하긴함 ! 그래야, 왼오를 구분)
+  - 중위 순회: LVR  (----->방향, `부모를 확인`함 ! 그래야, 왼오를 구분)
     - 왼쪽자식, 부모, 오른쪽 자식노드 순
   - 후위 순회: LRV
     - 자식노드를 좌우로 먼저 방문(post부터)    후,  부모노드 방문
@@ -171,7 +171,7 @@ pre(T):
 
 ```python
 def inorder_traverse(T):
-    if T: #T is not none
+    if T: #T is not none # 포화이진트리면, 마지막 정점번호 이내인지 확인할 수 있음
         inorder_trasverse(T.left) #왼쪽 먼저 찾으려면 루트는 통과하고 봐야함
         visit(T) #root
         inorder_trasverse(T.right) 
@@ -235,7 +235,7 @@ def postorder_traverse(T):
 ```python
 '''
 4
-12133435
+1 2 1 3 3 4 3 5
 '''
 def pre_order(v):
     if v: # 여기선 0번 정점이 없으므로. ..
@@ -302,12 +302,20 @@ for i in range(1, v+1):
 print(root) #루트 찾고, 얘부터 탐색 시작
 in_order(2) # 1 2 3 4 5
 
+#조상찾기--흠
+c = 5 #정점 c의 조상찾기
+anc = []
+while par[c] !=0:  #루트인지 확인  
+    anc.append(par[c]) #조상목록
+	c = par[c]
+print(*anc)  # 4 2 
+
 #조상찾기
 c = 5 #정점 c의 조상찾기
 anc = []
-while par[c] !=0:  #루트인지 확인
+while c != 0:  #만일 par[c] 자체에 0인 값이 있을수도 있음
     anc.append(par[c]) #조상목록
-	c = par[c]
+	c = c//2  #2를 넣을때n이 1 이 되어버림..
 print(*anc)  # 4 2 
 ```
 
@@ -327,6 +335,12 @@ for i in range(0, len(lst), 2):
         tree[parent][0] = child
     else:
         tree[parent][1] = child #right
+```
+
+```python
+배열로 표기하지 않을때, 좌 우를 찾는법
+def in_order(n):
+    if 
 ```
 
 ```
@@ -372,11 +386,11 @@ key: 위치 정보
 
 - 왼쪽 서브트리와 오른쪽 서브트리도 이진 탐색트리다.
 
-- 중위순회하면, 오름차순으로 정렬된 값을 얻을 수 있다. 1234...
+- <u>**중위순회하면, 오름차순으로 정렬된 값을 얻을 수 있다. 1234...**</u>
 
 - ![image-20220316144142953](images/image-20220316144142953.png).
 
-- 탐색연산
+- `탐색연산`
 
   - 루트에서 시작
   - 탐색할 키 값 x를 루트 노드의 키 값과 비교한다.
@@ -386,7 +400,7 @@ key: 위치 정보
 
   - ![image-20220316144445999](images/image-20220316144445999.png).
 
-- 삽입연산
+- `삽입연산`
 
   - 먼저 탐색 연산을 수행 
     - 삽입할 원소가 트리에 있는지 확인
@@ -395,7 +409,7 @@ key: 위치 정보
     - 5를 삽입하는 예
     - ![image-20220316144507825](images/image-20220316144507825.png).
 
-- 삭제연산
+- `삭제연산`
 
   - ![image-20220316145020373](images/image-20220316145020373.png).
 
@@ -456,8 +470,21 @@ key: 위치 정보
 - ![image-20220316145638300](images/image-20220316145638300.png).
 
 - ![image-20220316145906990](images/image-20220316145906990.png).
+
 - 삽입전의 힙에서 6th를 last값으로 저장함
+
 - 그 다음에 last += 1 증가시켜서, 삽입함
+
+  ```python
+  최대힙의 삽입연산
+  - 마지막 정점 추가
+  - 마지막 정점에 저장
+  - 부모 > 자식 또는 부모가 없을때까지 '부모와 자리 바꿈'
+  
+  ```
+
+  
+
 - ![image-20220316150146756](images/image-20220316150146756.png).
 - 자식이, 부모보다 키값이 큼
 - 위로 올려줌/ 더 큰 부모를 만날때까지 올림
@@ -475,7 +502,7 @@ def enq(n):  #우선순위 큐 구현에 쓰임
     c = last # 방금 받은 자식노드의 값, 즉 새로 추가된 정점을 자식으로
     p = c//2  #완전 이진트리에서의 부모 정점 번호
     while p >=1 and tree[p] < tree[c]: #처음 받아서 last가 0인거랑 비교할 수 없으니까 p값 설정
-        tree[p], tree[c] = tree[c], tree[p]      #부모가 있고, 자식의 키값이 더 크면 교환
+        tree[p], tree[c] = tree[c], tree[p]      	#즉, 부모가 있고 자식의 키값이 더 크면 교환/앖으면종료
         c = p
         p = c//2  #올라간애를 자식으로, 부모랑 비교해줘야함
         
@@ -494,7 +521,7 @@ enq(1)
 print(tree[1])  #7...
 ```
 
-- ![image-20220316152437020](images/image-20220316152437020.png)
+- ![image-20220316152437020](images/image-20220316152437020.png).
 
   
 
@@ -549,8 +576,8 @@ while last > 0:  # 다꺼낼거야
 '''
 7
 9
-9 7   키값이, 클수록 밥을 먼저 먹을 수 잇다. 
-7 5   9가 먼저 먹을 수 있으니까, 실제 출력은 이름으로 해서 ...ㅇㅇ
+9 7   키값이, 클수록 밥을 먼저 먹을 수 잇다.    9가 먼저 먹을 수 있으니까, 실제 출력은 이름으로 해서 ...ㅇㅇ
+7 5 
 5 4
 4 3
 3 2
@@ -595,7 +622,7 @@ def pre_order(v):
 
 ---
 
-정확하지 않음 다시 찾아보고 정리..힙큐
+`재정리 need`
 
 ```python
 import heapq
@@ -637,20 +664,38 @@ def delete(heap):
 heap = [50, 10, 20]
 import heapq
 heapq.heapify(heap)
-print(heap)  #[10, 50, 20]
+print(heap)  #[10, 50, 20] #최소힙
 
 print(heapq.heappop(heap)) 
 print(heap) #[20, 50]
 
 print(heapq.heappop(heap)) 
 print(heap) #[50]  #힙큐는 최소힙만 들어감
-#최대로 쓰려면 (-a, a) 넣어서....ㅎ....
-
-
-유튜브 보기........................................
+#최대로 쓰려면 (-a, a) 넣어서
 ```
 
+---
 
+---
 
-:carrot:
+#### 트리
 
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+class Tree:
+    def __init__(self, node):
+        self.root = node ## 노드를 한개 넣은 다음에 왼,오에 새로운 노드를 넣을게 식으로 !
+
+a = Node(3)
+b = Node(4)
+c = Node(5)
+a.left = b
+a.right = c
+```
+
+- 이진탐색트리- > 좌우간에 대소관계 존재
+- 힙->부모자식간에 대소관계 존재
