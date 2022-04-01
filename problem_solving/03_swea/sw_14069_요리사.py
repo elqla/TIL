@@ -11,7 +11,7 @@ def DFS(n, alst, blst):
                 ans = abs(asum - bsum)
         return
 
-    DFS(n + 1, alst + [n], blst)
+    DFS(n + 1, alst + [n], blst) # 식재료 idx를 넣어줌
     DFS(n + 1, alst, blst + [n])
 
 
