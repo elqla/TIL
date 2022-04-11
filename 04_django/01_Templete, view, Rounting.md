@@ -51,18 +51,17 @@
 
 `프로젝트 구조`
 
-- init.py (x)
-- asgi.py - 웹 서버와 연결, 소통 (x)
+- init.py (x)- python 에게 이 디렉토리를 하나의 파이썬 패키지로 다루도록 함
+- asgi.py  (x) - 장고 앱이 비동기식 웹 서버와 연결 및 소통하는것 도움
 
-** - setting.py - 애플리케이션 모든설정을 포함
+** - settings.py - 애플리케이션 모든설정을 포함
 
-- url.py - 사이트의 url과 적절한 views의 연결 지정 **
+- urls.py - 사이트의 url과 적절한 views의 연결 지정 **
 
-  
+- wsgi.py (x) - 장고 앱이 웹서버와 연결, 소통
 
-- wsgi.py - 장고 앱이 웹서버와 연결, 소통 (x)
 
-- manage.py  - 장고 프로젝트와 상호작용하는 커맨드라인 유틸리티 (커맨드 동작) (x)
+manage.py (x)  - 장고 프로젝트와 상호작용하는 커맨드라인 유틸리티 (커맨드 동작)
 
 
 
@@ -72,11 +71,11 @@
 
 - admin.py - 관리자용 페이지 설정
 
-- apps.py - 앱의 정보 작성(수정하지 않음) (x)
+- apps.py (x) - 앱의 정보 작성(수정하지 않음)
 
 - models.py - 앱에서 사용하는 모델을 정의
 
-- tests.py - 프로젝트의 테스트코드 작성 (서버 테스트코드 작성)(x)
+- tests.py (x)- 프로젝트의 테스트코드 작성 (서버 테스트코드 작성)
 
 - views.py - view 함수들의 정의되는 곳
 
@@ -87,6 +86,12 @@
 | 여러 앱이 포함될 수 있다.    | 실제 요청처리, 페이지 보여줌<br />앱은 하나의 역할, 기능 단위로 작성 |
 
 ** 앱은 생성한 후 등록(setting.py)해야함 !
+
+```
+#local apps (생성앱)
+#thrid party apps 
+#django apps 
+```
 
 
 
@@ -163,7 +168,7 @@
 5. (서버 종료 후) 앱 생성
 
    ```bash
-   python manage.py startapp articles
+   python manage.py startapp articles #application명은 복수형 권장
    ```
 
    
@@ -188,6 +193,7 @@
        				#템플릿의 위치: app/templates/템플릿
    view와 같은 위치인 articles안에 templates(폴더)를 만들고 index.html 을 만들어줌  #html파일 만들기
    #템플릿 : 응답을 위한 기초 구조
+   #render(request, 'articles/index.html')
    
    
    #urls.py
@@ -199,8 +205,6 @@
    
    --
    python manage.py runserver
-   ctrl 클릭
-   ---
    http://127.0.0.1:8000/index/
    
    ```
@@ -270,9 +274,13 @@
 
 1. 변수 
 
-   dot(.)으로 변수속성에 접근
+   렌더를 사용해, views.py에서 정의한 것을 template으로 넘김
 
-   render()의 <u>세번째 인자로 {'key': value}와 같은 딕셔너리 형태로 넘겨줌</u>
+    `{{ 변수 }}`
+
+   urls.py 에서  dot(.)으로 변수속성에 접근
+
+   render()의 <u>세번째 인자로 {'key': value}와 같은 딕셔너리 형태로 넘겨줌</u>/ 혹은 context
 
    ```python
    /urls.py
@@ -300,6 +308,7 @@
        foods = ['족발', '햄버거', '피자',]
        pick = random.choice(foods)
        context = {
+           'foods': foods,
            'pick': pick,
        }
        return render(request, 'dinner.html', context)
@@ -307,17 +316,22 @@
 
    ```django
    #html  templates
-   <body>
+   <body>'greeting.html'
      안녕하세요 저는 {{ name }}입니다.  #키값을 사용함 !
    </body>
    ----------
      안녕하세요 저는 {{ info.name }}입니다.
      저는 {{ num.0 }}살 입니다.
+   <a href="/greeting/">greeting</a>
    ```
 
    
 
 2. Filter 
+
+   표시할 변수를 수정할때 사용함 
+
+   `{{ variable|filter }}`형태
 
    [Built-in template tags and filters](https://docs.djangoproject.com/en/4.0/ref/templates/builtins/)
 
@@ -330,12 +344,13 @@
    <a href="/index/"> 뒤로 </a>
    <p> 글자수: {{ pick|length }} </p>  #2 (초밥)
    <p>{{ foods|join:', ' }}</p> #족발, 햄버거, 피자
-     
+   ---
+   {{ variable|truncatewords:30 }}
    ```
 
 3. tags ***중요
 
-   1. 출력텍스트, 반복, 논리를 수행하여 제어 흐름을 만듦
+   1. 출력텍스트, 반복, 논리를 수행하여 <u>제어 흐름을 만듦</u>
    2. 일부 태그는 시작, 종료태그 필요
 
    ```django
@@ -344,7 +359,7 @@
    
    <p>메뉴판</p>
    <ul>
-     {% for food in foods %}  ##tag는 중괄호 퍼센트로 열고 닫힘, 변수출력은 중괄호 두개
+     {% for food in foods %}  ##tag는 중괄호 퍼센트로 열고 닫힘
        <li>{{ food }}</li>   #변수출력은 중괄호 두개
      {% endfor %}
    </ul>
@@ -450,15 +465,21 @@
 #### skeleton template 
 
 - 템플릿 상속은 기본적으로 코드의 재사용성에 초점을 맞춤
-
 - 템플릿 상속을 사용하면 사이트의 모든 공통 요소를 포함하고, 하위 템플릿이 재정의(override) 할 수있는 블록을 정의하는 기본 “skeleton” 템플릿을 만들 수 있음
+- `{% extends '' %}`
 
 ```python
 templates folder (folder를 앱, pjt와 나란히) with base.html
 
 #settings.py
 TEMPLATES = [{
-        'DIRS': [BASE_DIR / 'templates',],}] #templates상속을 위해 추가해준다.
+        'DIRS': [BASE_DIR / 'templates',],
+		'APP_DIRS'=True,
+							}] #templates상속을 위해 추가해준다.
+
+
+
+---
 INSTALLED_APPS = [
     'movies',]  #app추가
 ```
@@ -480,7 +501,9 @@ CDN
 {% endblock %}
 ```
 
-- including   ;; base.html이 길어질 경우
+- `{% include '' %}`
+- 템플릿을 로드, 현재페이지로 렌더링
+- 포함될 템플릿 이름 앞에 _ 언더바로, 분류
 
 ```python
 #articles/templates/      또는     templates/  (base.html과 같이)
@@ -506,21 +529,19 @@ _nav.html
 
 # html Form
 
+- 사용자가 정보를 입력하는 방식제공(text, checkbox...), 입력데이터 서버로 전송
+- 속성
+  - action: 입력 데이터가 전송될 url 지정 `<form action="{% url 'catch' %}"></form>`
+  - method: 입력 데이터 전달 방식 지정    ` get, post()`
+
 ```django
 <form action="{% url 'catch' %}" method="GET">  #form + tab
-  <label for="message">
+  <label for="message">  <!-/label해도되나-!>
     message: 
     <input type="text" name="message" id="message">  # name 으로 key 데이터 전달 (?message=장고)
   </label>
   <input type="submit">
 </form>
-```
-
-```django
-<form>
->사용자 정보 입력방식 제공(text, checkbox...), 사용자 데이터-> 서버
-action: 입력데이터가 전송될 url지정
-method: 입력데이터 전달방식    get, post()
 ```
 
 ```django
@@ -530,7 +551,6 @@ type: 이에따라 동작방식이 달라짐
 name: 중복가능, 양식 제출시 name에 설정된 값을 넘겨 값을 가져옴
 	GET/POST 방식에서, 서버에 전달하는 파라미터(name은 key, value는 value로 매핑함)
 	GET-> URL: ?key=value&key=value 형식으로 데이터 전달
-
 ```
 
 ```django
@@ -539,13 +559,12 @@ name: 중복가능, 양식 제출시 name에 설정된 값을 넘겨 값을 가�
 label을 input요소와 연결!
     1. input에 id 속성 부여
     2. label엔 input의 id와 동일한 값의 for 속성 필요
-    #즉 label for="메세지"  input id="메세지"
     이유: 시각적 + 사용자가 입력해야하는 텍스트가 무엇인지 쉽게 알수 있다.(프로그래밍적 이점)
    
 label 클릭 : input에 초점맞추거나 활성화 가능
 
 <for>
-기능: for와 일치하는 id를 가진 문서의 1st요소 제어 
+기능: for와 일치하는 id를 가진 문서의 첫번째 요소 제어 
 labelable elements: label요소와 연결할 수 있는 요소(button, input, select, ...)
 
 <id>
@@ -556,21 +575,58 @@ labelable elements: label요소와 연결할 수 있는 요소(button, input, se
 <HTTP>
 웹의 모든 데이터 교환의 기초
 request method: 리소스가 수행할 작업 (GET, POST, PUT, DELETE.....)
-1. GET: 서버로부터 정보를 조회
-    	데이터를 가져올때만 사용
-    	데이터를 서버로 전송시, bodyX, Query String Prameters를 통해 전송
+1. GET: 서버로부터 정보를 조회 즉, 데이터를 가져올때만 사용!!
+    	데이터를 서버로 전송시, body가 아닌 Query String Prameters를 통해 전송
     	서버에 요청하면, HTML 문서파일 한장을 받는데, 이때 사용하는 요청방식임.
+```
+
+```python
+#urls.py
+urlpatterns =[
+    path('throw/', views.throw)
+    path('catch/', views.catch)
+]
+#views.py
+def throw(request):
+	return render(request, 'throw.html')
+def catch(request):
+    message = request.Get.get('message')   
+	context = {
+        'message':message,
+    }
+    
+    return render(request, 'catch/html', context)
+
+#밑에 throw에서 넘겨진 name 키값을 GET(조회)!  
+#request.GET이 서버에 요청해서, 정보를 조회하겠다는건데
+#여기에 .get('key')를 사용함으로써 value를 가져오게 되는듯
+    
+```
+
+```django
+#throw.html
+<h1>THROW</h1>
+<form action="{% url 'articles:catch' %}" method="GET">
+  <label for="message">Throw</label>
+  <input type="text" id="message" name="message">
+  <input type="submit">
+</form>
+
+#catch.html
+<h1>catch</h1>
+<h2>여기서 {{ message }}를 받았어</h2>
+<a href="/throw">다시 던지러</a>
 ```
 
 
 
 # Url
 
-
-
 `variable routing`
 
 - url의 일부를 변수로 지정하여, view함수의 인자로 넘길 수 있다.
+
+-  `'~/<type:name>/'`
 
 - ```django
   path('hello/<name>/<int:age>/',views.hello, name="hello"),
@@ -601,7 +657,8 @@ request method: 리소스가 수행할 작업 (GET, POST, PUT, DELETE.....)
 
   ```python
   from django.contrib import admin
-  from django.urls import path, include ##include
+  from django.urls import path, include ##include 다른 url 참조를 도움
+  #from .module import ..
   
   urlpatterns = [
       path('admin/', admin.site.urls),
@@ -615,10 +672,10 @@ request method: 리소스가 수행할 작업 (GET, POST, PUT, DELETE.....)
 - articles(app)/urls.py
 
   ```python
-  from django.urls import path #
+  from django.urls import path ###
   from . import views #나한테 있는 views import
   
-  ##
+  app_name="articles"
   urlpatterns = [
       path('index/',views.index, name="index"),
       path('throw/',views.throw, name="throw"),
@@ -629,34 +686,34 @@ request method: 리소스가 수행할 작업 (GET, POST, PUT, DELETE.....)
 
   - naming url patterns
 
-    - path() 함수의 name인자 정의해서 사용
+    - 링크에 url을 직접 작성하지 않고, path() 함수의 name인자를 정의해서 사용함
 
+    - url 설정에 정의된, 특정 경로들의 의존성 제거
+    
+    - 절대경로주소 반환 ! 
+    
+    - `{% url '' %}`
+    
+      - ```python
+        path('index/',views.index, name="index")
+        ```
+    
+        ```django
+        <a href = "{% url 'index' %}">메인페이지</a>
+        #<a href="/greeting/">greeting</a> ## 기존
+        ```
+    
+        
+    
       
 
-- url template tag
+- namespace적용시
 
-   `{% url '' %}`
-
-  - 절대경로주소
-
-  ```django
-  #throw.html
-  <form action="{% url 'catch' %}" method="GET">  
-    ...
-  </form>
-  
-  #catch.html
-  {% extends 'base.html' %}
-  {% block content %}
-    <h1>Catch</h1>
-    <h2>여기서{{ message }}를 받았어</h2>
-    <a href="/articles/throw/">다시 던지러</a>
-  {% endblock content %}
-  ```
+   - ex)appname="articles"
 
   ```django
   #index.html
-  {% extends 'vase.html' %}
+  {% extends 'base.html' %}
   {% block content %}
     <a href="{% url 'articles:greeting' %}">greeting</a>
     <a href="{% url 'articles:dinner' %}">dinner</a>
@@ -665,7 +722,7 @@ request method: 리소스가 수행할 작업 (GET, POST, PUT, DELETE.....)
   
   {% endblock content %}
   <!-- -->
-  <a href="{url 'index'}">뒤로</a>
+  <a href="{% url 'index' %}">뒤로</a>
   ```
   
   ```django

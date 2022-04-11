@@ -44,6 +44,8 @@
 
 ### ORM(object-relational-mapping)
 
+- <u>`DB를 객체로 조작하기 위해 ORM 을 사용함 (즉, 파이썬의 객체지향 언어-> orm->sql statement)`</u>
+
 - 객체지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 시스템간에(Django-SQL)
 
   데이터를 변환하는 프로그래밍 기술
@@ -52,11 +54,25 @@
 
 - Django는 내장 Django ORM을 사용함
 
+  
+
+- 데이터를 db에 저장할때, persistance framework(orm)를 사용해서, 저장할 수 있다.
+
+- orm은 객체와, 데이터베이스의 관계를 매핑해주는 도구이다.
+
+- 장고는 sqlite3(장고의 orm)를 사용해 장고와 sql간의 데이터를 변환한다.
+
 ![image-20220308173410960](images/image-20220308173410960.png)
+
+<img src="images/image-20220320234243466.png" alt="image-20220320234243466" style="zoom:67%;" />
+
+
+
+[참고](https://hanamon.kr/orm%EC%9D%B4%EB%9E%80-nodejs-lib-sequelize-%EC%86%8C%EA%B0%9C/)
 
 ~~파이썬을 사용해서model: database table에 매핑된 것~~
 
-DB를 객체로 조작하기 위해 ORM 을 사용함 (즉, 파이썬의 객체지향 언어-> orm->sql statement)
+
 
 
 
@@ -71,12 +87,14 @@ DB를 객체로 조작하기 위해 ORM 을 사용함 (즉, 파이썬의 객체�
 
 #### models.py 작성
 
+- 역할: 장고>db, db>장고
+
 ```python
 #[app]/models.py
 from django.db import models
 #객체지향이라 class로 만들기
-class Article(models.Model):  #상속받기
-    title = models.CharField(max_length=10)  #char, string!
+class Article(models.Model):  #상속받기  #article = 장고모델객체, db에서 가져올수도있고,,,ㅇㅇ
+    title = models.CharField(max_length=10)  #char, string! #max_length 필수인자
     content = models.TextField() #길이 제한이 없는 text field
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -134,7 +152,6 @@ class Article(models.Model):  #상속받기
   
   2. migrate
   
-    - `설계도를 설계/반영 해줘`
     - <u>마이그레이션(설계도)을 실제 DB에 반영</u>
     - 모델에서의 변경사항들과 DB의 스키마가 동기화를 이룸
   
@@ -144,8 +161,11 @@ class Article(models.Model):  #상속받기
   
   4. showmigrations
     - 프로젝트 전체의 마이그레이션 상태를 확인하기 위해 사용
+  
     - 적용이 되었는지 여부 (migraions file이 migrate됐는지)
 
+	    
+	
 	#### 모델 만들기
 
 ```python
@@ -205,7 +225,7 @@ $python manage.py showmigrations
 
 
 
-- 시험/DATEField's option
+- DATEField's option
   - auto_now_add
     - 최초 생성일자
     - 최초 insert(테이블에 데이터 입력)시에만, 현재 날짜와 시간으로 갱신(테이블에 어떤 값을 최초로 넣을때)
@@ -224,20 +244,16 @@ $python manage.py showmigrations
 - 반드시 기억해야할 migration 3단계
   - models.py
     - model변경사항 발생시
-  - $python manage.py makemigraions
+  - $python manage.py makemigrations
     - migrations 파일 생성
   - $python manage.py migrate
     - DB반영(모델과 DB 동기화)
 
 
 
-
-
 ### DATABASE API  
 
 - `여기 건너띄고, admin해서, 그 창에서 게시물 만들수도 있음 `
-
-
 
 - django가 기본적으로 orm을 제공함에 따른 것으로 db를 편하게 조작할 수 있도록 도움
 
@@ -307,49 +323,29 @@ CRUD
 Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 일컬음
 
 ```python
-$ python manage.py shell_plus 
-#create
-#특정 테이블에 새로운 행을 추가해여 데이터 추가
-In [2]: article = Article()  # 인스턴트 생성 #Article(class)로 부터 article(instance)
+$python manage.py shell_plus
+create
+#인스턴스 생성 후 인스턴스 변수 설정
+article = Article()
+article.title = 'first' #인스턴스 변수(title)에 값 할당/article class로 부터/특정테이블에 행 및 데이터추가
+article.content = '1st content!' #인스턴스 변수(content)에 값 할당
+article.save()  #db에 값 저장 /좌측 하단의 sqlite explorer의 articles_articles > 눌러서 확인해보기
 
-In [3]: article.title = "first"  #인스턴스 변수(title)에 값을 할당
+---
+#초기값과 함께 인스턴스 생성
+article = Article(title='second', content='2nd content')
+article.save()
+---
+#바로, 쿼리표현식 리턴/create method
+Article.objects.create(title='third',content='3rd content')
+(save 필요x)
 
-In [4]: article.content = "1st content" #인스턴스변수(content)에 값을 할당
-
-In [5]: article.save()  #save를 해줘야 DB에 값이 저장됨
-   			#좌측 하단의 sqlite explorer의 articles_articles > 눌러서 확인해보기
-        
-        
--------초기값과 함께 인스턴스 생성
-In [6]: article = Article(title="second",content="2nd content")
-
-In [7]: article.save()  #저장된 것 확인
-In [9]: article  #저장 안됬으면, out: <Article: Article object(None)>
-Out[9]: <Article: Article object (2)> #현 아티클에 article = second를 넣어줘서 변수를 보면 second가 나옴
-        
-In []: Article.objects.all()    #쿼리셋으로도 확인가능
-    
-    
---------QuerySetAPI - create() 사용 #쿼리 표현식  리턴
-In [8]: Article.objects.create(title="third", content="3rd content")
-Out[8]: <Article: Article object (3)>   #return 값이 있음   #save 안해도 됨
-
-##테이블 확인해보기 #저장여부 
------------------------------------------------------------------------
-#인스턴스인 article을 활용하여, 변수에 접근한다.(저장된 것을 확인)
-In [10]: article.created_at
-Out[10] : ,,,
-    
-In [12]: article.id
-Out[12]: 2
-
-In [13]: article.pk
-Out[13]: 2
-
-In [14]: article.title
-Out[14]: 'second'
-    
-
+-----
+article
+Article.object.all()
+article.title #인스턴스인 article을 활용하여, 변수에 접근해보기 (저장된거 확인)
+article.content
+article.pk
 ```
 
 - save() method
@@ -370,16 +366,14 @@ Out[14]: 'second'
 class Article(models.Model):
     title = models.CharField(max_length=10) 
     content = models.TextField() 
-    create_at = models.DateTimeField(auto_now_add=True)
-    updates_at = models.DateTimeField(auto_now=True)
-    
-   ####이거 ! 
+
     def __str__(self):
         return f"제목 : {self.title} 내용: {self.content}"
    
     def __str__(self):
-        return self.title #둘중하나 써보기
-#작성후 반드시 shell_plus 재시작해야 반영됨 !! (model을 바꿔서인듯)
+        return self.title 
+    
+#작성후 반드시 shell_plus 재시작해야 반영됨
 $ python manage.py shell_plus 
 
 $ Article.objects.get(pk=1)
@@ -396,7 +390,8 @@ Out[1]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : second>, <Artic
 
 ```python
 #1
-Article.objects.all() #all 현재 쿼리셋의 복사본을 반환
+all()
+Article.objects.all() # 현재 쿼리셋의 복사본을 반환
 ```
 
 ```python
@@ -434,11 +429,11 @@ Out[8]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : first>]>
 #filter를 하게 되니까 됨
 ```
 
-
-
 > 실습(교재)
 
 `update`
+
+- Article.objects.get(필드=값)으로 값 가져와서, 수정해줌
 
 ```python
 #update articles set title ="byebye" where id=1;
@@ -471,127 +466,16 @@ Article.objects.get(pk=1)
 
 
 
-> 교수님과 실습한 부분
-
-```python
-In [7]: Article.objects.filter(title="second")
-Out[7]: <QuerySet [<Article: 제목 : second>]>
-
-In [8]: Article.objects.filter(title="first")
-Out[8]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : first>]>
-
-In [9]: Article.objects.filter(title="fivth")
-Out[9]: <QuerySet []>
-
-In [10]: Article.objects.get(title="second")
-Out[10]: <Article: 제목 : second>
-
-In [12]: Article.objects.filter(title="second")
-Out[12]: <QuerySet [<Article: 제목 : second>]>
-```
-
-#만약수정하고 싶어
-
-```python
-In [12]: Article.objects.filter(title="second")
-Out[12]: <QuerySet [<Article: 제목 : second>]>  
-
-In [13]: article = Article.objects.get(pk=1)   #지금 내 article이 first(pk=1)를 가리킴
-
-In [14]: article.pk
-Out[14]: 1
-
-In [15]: article.title
-Out[15]: 'first'
-```
-
-```python
-In [16]: article.title = "change"
-
-In [17]: article.content = "changed content"
-
-In [18]: article.save()
-```
-
-![image-20220308134142252](images/image-20220308134142252.png). 바뀜
-
-```python
-In [19]: article = Article.objects.get(pk=1)
-
-In [20]: article.title
-Out[20]: 'change'
-
-In [21]: article.delete()
-Out[21]: (1, {'articles.Article': 1})
-```
-
-![image-20220308134244081](images/image-20220308134244081.png).
-
-```
-In [22]: article = Article(title="first", content="haha")
-
-In [23]: article.save()
-```
-
-![image-20220308134429049](images/image-20220308134429049.png).
-
-```python
-In [24]: articles = Article.objects.filter(title="first")
-
-In [25]: articles
-Out[25]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : first>]>
-    
-In [26]: articles
-Out[26]: <QuerySet [<Article: 제목 : first>, <Article: 제목 : first>]>
-
-In [27]: articles.delete()
-Out[27]: (2, {'articles.Article': 2})
-```
-
-![image-20220308134652932](images/image-20220308134652932.png).
-
-```python
-In [28]: article = Article(title="first", content="content2")
-
-In [30]: article.save()
-
-In [31]: article = Article(title="firstssssss", content="content2")
-
-In [33]: article.save()
-```
-
-![image-20220308135111411](images/image-20220308135111411.png).
-
-
-
 - Field lookups
   - 조회 시 특정 검색 조건을 지정
     - QuerySet 메서드 filter(), exclude() 및 get()에 대한 키워드 인수로 지정됨
 
 ```python
-In [34]: Article.objects.filter(pk__gt=2) ##(id가 2보다 큰거)
-Out[34]: <QuerySet [<Article: 제목 : thired>, <Article: 제목 : first>, <Article: 제목 : firstssssss>]>#
-    
-In [34]: Article.objects.filter(content__contains='ja')
+Article.objects.filter(pk__gt=2) ##(id가 2보다 큰거)
+Article.objects.filter(content__contains='ja')
 ```
 
-하나하나 접근하면 인스턴스내뱉는데, 여러개 접근하면 쿼리셋으로 내뱉음
-
-```python
-In [37]: Article.objects.all()
-Out[37]: <QuerySet [<Article: 제목 : second>, <Article: 제목 : thired>, <Article: 제목 : first>, <Article: 제목 : firstssssss>]>
-
-In [39]: articles[:4]
-Out[39]: <QuerySet [<Article: 제목 : first>]>
-```
-
-![image-20220308141020001](images/image-20220308141020001.png).
-
-
-
-<u>만약모델 잘못 만들면 migrations  안에  __init__을 제외하고 지움, db.split3도 지움</u>
-
-후 migration
+<u>만약모델 잘못 만들면 migrations  안에  __init__을 제외하고 지움, db.split3도 지우고 migration</u>
 
 
 
@@ -612,24 +496,11 @@ QuerysetAPI
 
 ```python
 $ python manage.py createsuperuser
-------------------------------------------------------
-Username (leave blank to use 'ssafy_dabeen'): user
-Email address: 
-Password: 
-Password (again): 
-The password is too similar to the username.
-This password is too short. It must contain at least 8 characters.      
-This password is too common.
-Bypass password validation and create user anyway? [y/N]: y
-Superuser created successfully.
-(venv) 
 
 #서버 실행 후 /admin 가서 로그인
 #계정만 만들시, 아무것도 안보임
 #내가 만든 모델 보려면, admin.py에 작성해 장고 서버에 등록 해야함
 ```
-
-
 
 ```python
 #articles/admin.py

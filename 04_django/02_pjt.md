@@ -1,10 +1,17 @@
+[The staticfiles app](# The staticfiles app)
+
+
+
 ### 1. name space
 
-두 앱에서 index.html을 rendering 한다고 할때, 장고는 INSTALL_APPS 순으로 , 먼저 등록한 앱의 index 페이지만 나온다.
+- Django는 기본적으로 `app_name/templates/` 경로에 있는 templates 파일들만 찾을 수 있으며, INSTALLED_APPS에 작성한 app 순서로 tamplate을 검색 후 렌더링
 
-따라서, 중간에 폴더를 만들어 두 index.html을 분리시킨다.
+- 임의로 templates의 폴더 구조를 `app_name/templates/app_name` 형태로 변경해 임의로 이름 공간 생성 후 변경된 추가 경로 작성
 
 - url namespace (app_name, 참조)
+  - views == `'index.html'`-> `'appname/index.html'`  파일을 렌더링해줘
+    - redirect시엔, `appname:variable`
+  - html == `{% url 'appname:variable' %}`  ㅇㅇ로 요청을 보내줘
 
 ```python
 #articles/urls.py
@@ -12,11 +19,9 @@ app_name = 'articles' #써주기
 urlpatterns = [...]
 
 #articles/index.html
-  <a href="{% url 'greeting' %}">greeting</a>
   <a href="{% url 'dinner' %}">dinner</a>
-
-=><a href="{% url 'articles:greeting' %}">greeting</a>
-  <a href="{% url 'articles:dinner' %}">dinner</a>
+    
+=><a href="{% url 'articles:dinner' %}">dinner</a>
   <a href="{% url 'pages:index' %}"></a>
 ```
 
@@ -103,7 +108,9 @@ ex) my_app/static/my_app/example.jpg
      $python manage.py collectstatic
      ```
 
+- app안에 static 폴더 만들기
 
+  
 
 
 
@@ -173,6 +180,132 @@ STATICFILES_DIRS = [
 
 
 
+
+---
+
+---
+
+## The staticfiles app
+
+> https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#module-django.contrib.staticfiles
+
+**`STATICFILES_DIRS`**
+
+```python
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+```
+
+- app/static/ 디렉토리 경로를 사용하는 것(기본 경로) 외에 추가적인 정적 파일 경로 목록을 정의하는 리스트
+- 추가 파일 디렉토리에 대한 전체 경로를 포함하는 문자열 목록으로 작성되어야 함
+
+<br>
+
+**`STATIC_URL`**
+
+```python
+STATIC_URL = '/static/'
+```
+
+- STATIC_ROOT에 있는 정적 파일을 참조 할 때 사용할 URL 
+- 개발 단계에서는 실제 정적 파일들이 저장되어 있는 app/static/ 경로 (기본 경로) 및STATICFILES_DIRS에 정의된 추가 경로들을 탐색함 
+- 실제 파일이나 디렉토리가 아니며, URL로만 존재 비어 있지 않은 값으로 설정 한다면 반드시 slash(/)로 끝나야 함
+
+<br>
+
+**`STATIC_ROOT`**
+
+- collectstatic이 배포를 위해 정적 파일을 수집하는 디렉토리의 절대 경로 
+- django 프로젝트에서 사용하는 모든 정적 파일을 한 곳에 모아 넣는 경로 
+- 개발 과정에서 setting.py의 DEBUG 값이 True로 설정되어 있으면 해당 값은 작용되지 않음 
+  - (배포시, False)
+  - AllOWED_HOST = [*]
+- 직접 작성하지 않으면 django 프로젝트에서는 setting.py에 작성되어 있지 않음 
+- 실 서비스 환경(배포 환경)에서 django의 모든 정적 파일을 다른 웹 서버가 직접 제공하기 위함
+
+> [참고] **collectstatic**
+>
+> - 프로젝트 배포 시 흩어져있는 정적 파일들을 모아 특정 디렉토리로 옮기는 작업
+>
+> ```python
+> # settings.py 예시
+> 
+> STATIC_ROOT = BASE_DIR / 'staticfiles'
+> ```
+>
+> ```bash
+> $ python manage.py collectstatic
+> ```
+
+<b
+
+<br>
+
+### static file 사용하기
+
+1. 기본경로
+
+   - `article/static/articles/` 경로에 이미지 파일 위치
+
+     ```django
+     <!-- articles/index.html -->
+     
+     {% extends 'base.html' %}
+     {% load static %}
+     
+     {% block content %}
+       <img src="{% static 'articles/sample.png' %}" alt="sample">
+       ...
+     {% endblock %}
+     ```
+
+     - 이미지 파일 위치 - `articles/static/articles/`
+
+    - static file 기본 경로
+
+      - `app_name/static/`
+
+2. 추가 경로
+
+   - `static/` 경로에 CSS 파일 위치
+
+```django
+<!-- base.html -->
+
+<head>
+  {% block css %}{% endblock %}
+</head>
+```
+
+```python
+# settings.py
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+```
+
+```django
+<!-- articles/index.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+```
+
+```css
+/* static/style.css */
+
+h1 {
+    color: crimson;
+}
+```
+
+<br>
 
 
 
