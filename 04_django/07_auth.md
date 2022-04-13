@@ -5,7 +5,7 @@
 ```python
 # djang의 인증 시스템과 관련
 INSTALLED_APPS = [
-'django.contrib.auth',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
 ```
 
@@ -137,7 +137,8 @@ def login(request):
         if form.is_valid(): # 폼에 인증된 사용자가 들어있음
             # 로그인  # user = form.get_user()
             auth_login(request, form.get_user()) # auth_login(request, user)
-            return redirect('articles:index')
+           # return redirect('articles:index')
+            return redirect(request.GET.get('next') or 'articles:index')
 
     else:
         form = AuthenticationForm()
@@ -229,7 +230,7 @@ def logout(request):
 
 ```django
 #index.html
-{% if reauest.user.is_authenticated %}
+{% if request.user.is_authenticated %}
     <a href="{% url 'articles:create' %}">CREATE</a>
   {% else %}
     <a href="{% url 'accounts:login' %}">[새 글을 작성하려면, 로그인하세요]</a>

@@ -247,6 +247,8 @@ manage.py (x)  - 장고 프로젝트와 상호작용하는 커맨드라인 유�
    search <django settings - language>
    ```
 
+=>[초기모델설정](08_데이터베이스관계.md)
+
 => [model](03_model.md)
 
 # templete (presentation)
