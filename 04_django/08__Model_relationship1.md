@@ -20,11 +20,12 @@
 
 ![image-20220413094044995](images/image-20220413094044995.png).
 
-
+- 참조하는 모델의 외래키는 참조되는 모델의 PK를 가리킴
 
 - ForeignKey field
-  - A mant to - one relationship
-  - 참조하는 모델클래스, on_delete옵션
+  - A many to - one relationship
+    1. 참조하는 모델클래스
+    2. on_delete옵션
 - 데이터 무결성
   - 데이터의 정확, 일관성 유지 보증
   - 개체, 참조, 범위 무결성이 있음
@@ -39,7 +40,7 @@ class Comment(models.Model):
     content = models.CharField(max_length=200)   ## article, content는 auto-now 아니므로 값 넣어줘야함
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-	# article_id 자동 생성됨
+	# article_id 자동 생성됨 #####################################
     def __str__(self):
         return self.content
 ```
@@ -157,7 +158,7 @@ Out[8]: 1
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        field = '__all__'
+        fields = '__all__'
         
 #urls.py
     path('<int:pk>/comments/', views.comment_create, name='comment_create'),
@@ -208,6 +209,7 @@ def comment_delete(request, article_pk, comment_pk):
 
 ```django
 #detail.html
+  <h4>댓글목록</h4>
   {% if comments %}
     <p>
       <b>{{ comments|length }}개의 댓글이 있습니다.</b>
@@ -220,14 +222,25 @@ def comment_delete(request, article_pk, comment_pk):
         {{ comment.user }}
         -
         {{ comment.content }}
-        <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="삭제">
-        </form>
-      </li>
-	{% endfor %}
-  </ul>
+        {% if request.user == comment.user %}
+          <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+          </form>
+        {% endif %}
 
+      </li>
+    {% endfor %}
+  </ul>
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'articles:comment_create' article.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인 하세요]</a>
+  {% endif %}
 ```
 
 
@@ -262,22 +275,24 @@ def comment_delete(request, article_pk, comment_pk):
 - 마이그레이션 되기 전에 해야함 !!
 
 - ```python
-  #accounts/models.py
-  from django.contrib.auth.models import AbstractUser
-  class User(AbstractUser):
-      pass
-  
   #settings.py
   AUTH_USER_MODEL = 'accounts.User' # 기존: auth.User
   
+  
+  #accounts/models.py
+  from django.contrib.auth.models import AbstractUser  #장고에서 제공하는 로그인기능
+  class User(AbstractUser):
+      pass
+  
   #accounts/admin.py
   from django.contrib import admin
+  ####
   from django.contrib.auth.admin import UserAdmin
   from .models import User
   
   admin.site.register(User, UserAdmin)
   ```
-
+  
 - ```python
   db.sqlite3 파일 삭제
   migrations 파일 모두 삭제 *파일명에 숫자가 붙은 파일만 삭제
@@ -285,7 +300,7 @@ def comment_delete(request, article_pk, comment_pk):
   $ migrate
   ```
 
-- usercreationform, userchangeform ==> class Meta: model = User
+- `usercreationform, userchangeform` ==> `class Meta: model = User`
 
 - -->  custom user 모델로 대체해야함
 
@@ -437,8 +452,4 @@ def update(request, pk):
     <a href="{% url 'accouts:login' %}">[댓글을 작성하려면 로그인 하세요]</a>
   {% endif %}
 ```
-
-
-
-
 

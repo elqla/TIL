@@ -251,6 +251,8 @@ manage.py (x)  - 장고 프로젝트와 상호작용하는 커맨드라인 유�
 
 => [model](03_model.md)
 
+=> git_ignore에서 처음에 장고를 설정해줄때, dq_sqlite3가 자동으로 저장되어 있으므로 상대방과 db를 공유해야할때, git ognore에서 db_sqlite두줄을 지운다. !
+
 # templete (presentation)
 
 > 데이터 표현을 제어하는 도구, 표현에 관련된 로직

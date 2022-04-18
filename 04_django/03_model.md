@@ -93,7 +93,7 @@
 #[app]/models.py
 from django.db import models
 #객체지향이라 class로 만들기
-class Article(models.Model):  #상속받기  #article = 장고모델객체, db에서 가져올수도있고,,,ㅇㅇ
+class Article(models.Model):  #슈퍼클래스 models의 하위클래스 Model을 상속받는다.
     title = models.CharField(max_length=10)  #char, string! #max_length 필수인자
     content = models.TextField() #길이 제한이 없는 text field
     created_at = models.DateTimeField(auto_now_add=True)
