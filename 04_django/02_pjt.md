@@ -175,7 +175,41 @@ STATICFILES_DIRS = [
 
 ```
 
+### media root
 
+```
+
+MEDIA_ROOT = BASE_DIR/ 'media'
+MEDIA_URL = '/media/'
+
+    'imagekit',
+    
+    
+    
+from imagekit.processors import Thumbnail
+from imagekit.models import ProcessedImageField
+    upload_picture = ProcessedImageField(
+        blank=True,
+        upload_to='thumbnails/',
+        processors=[Thumbnail(500, 500)],
+        format='JPEG',
+        options={'quality': 60})
+    #image = models.ImageField(upload_to="images/", blank=True)
+    
+    
+    
+    
+#pjt_url
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # path('', include('articles.urls')),
+    # path('accounts/', include('accounts.urls'))
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # static
+
+```
 
 
 

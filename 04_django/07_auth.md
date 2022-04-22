@@ -356,6 +356,10 @@ def delete(request):
 
 [usermodel]([django.contrib.auth | Django documentation | Django (djangoproject.com)](https://docs.djangoproject.com/en/3.2/ref/contrib/auth/))
 
+```
+settings의 auth.User변경했는데, usercreationForm에는 auth.User가 들어있기 때문에 에러남
+```
+
 ```python
 from .forms import CustomUserChangeForm
 def update(request):

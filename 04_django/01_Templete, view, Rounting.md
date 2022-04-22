@@ -247,11 +247,11 @@ manage.py (x)  - 장고 프로젝트와 상호작용하는 커맨드라인 유�
    search <django settings - language>
    ```
 
-=>[초기모델설정](08_데이터베이스관계.md)
+=>[초기모델설정](08__Model_relationship1.md)
 
 => [model](03_model.md)
 
-=> git_ignore에서 처음에 장고를 설정해줄때, dq_sqlite3가 자동으로 저장되어 있으므로 상대방과 db를 공유해야할때, git ognore에서 db_sqlite두줄을 지운다. !
+=> git_ignore에서 처음에 장고를 설정해줄때, db_sqlite3가 자동으로 저장되어 있으므로 상대방과 db를 공유해야할때, git ognore에서 db_sqlite두줄을 지운다. !
 
 # templete (presentation)
 

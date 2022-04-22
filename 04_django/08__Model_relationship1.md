@@ -1,6 +1,6 @@
 # 1:N
 
-[customizing authentication in django](customizing authentication in django)
+[customizing authentication in django](# customizing authentication in django)
 
 ### Foreign key
 
@@ -98,7 +98,7 @@ admin.site.register(Comment)
 
 - 역참조
 
-  - `comment_set`
+  - `model(소문자)_set`
 
   - 외래키가 없는 Article에서 Comment를 어떻게 참조하는가 ?
 
@@ -115,6 +115,8 @@ admin.site.register(Comment)
     ```
 
   - migrations
+
+    
 
 - 참조
   - comment-> Article
