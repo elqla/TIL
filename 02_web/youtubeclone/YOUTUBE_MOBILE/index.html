@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/4369db3be1.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+  <title>Youtube Mobile</title>
+
+</head>
+<body>
+  <!-- header -->
+  <header>
+    <div class="logo">
+      <i class="fa-brands fa-youtube"></i>
+      <span class="title">Youtube</span>
+    </div>
+    <div class="icons">
+      <i class="fa-solid fa-search"></i>
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+  </header>
+  
+  <!--video plyer-->
+  <section class="player">
+    <video controls src="video/chocoangel_thin (video-converter.com).mp4" type="video/mp4"></video>
+  </section>
+
+<div class="infoAndUpNext">
+    <!-- video info -->
+  <section class="info">
+    <!-- metadata -->
+    <div class="metadata">
+      <ul class="hashtags">
+        <li>#choco</li>
+        <li>#angel</li>
+        <li>#love</li>
+      </ul>
+      <div class="titleAndButton">
+        <span class="title clamp">
+          An old teddy bear: 
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, reprehenderit consequuntur ratione ab dicta, enim nesciunt recusandae quisquam quasi saepe assumenda. Eius at facilis repellendus possimus iste repellat, reprehenderit accusantium.
+        </span>
+        <button class="moreBtn">
+          <i class="fas fa-caret-down"></i>
+        </button>
+      </div>
+        <span class="views">1M views 1 month ago</span>
+    </div>
+    <!-- Actions -->
+    <ul class="actions">
+      <!-- (li>button)*5 -->
+      <li><button>
+        <i class="active fas fa-thumbs-up"></i>1k
+      </button></li>
+      <li><button>
+        <i class="fas fa-thumbs-down"></i>0
+      </button></li>
+      <li><button>
+        <i class="fa-solid fa-share"></i>share
+      </button></li>
+      <li><button>
+      <i class="fa-solid fa-plus"></i>save
+      </button></li>
+      <li><button>
+        <i class="fa-solid fa-font-awesome"></i>report
+      </button></li>
+    </ul>
+    <!-- Channel Description -->
+    <div class="channel">
+      <!-- 자식 flex 보라색 -->
+      <div class="metadata">
+        <img src="image/다빈.jpg" alt="">
+        <!-- .info>span.name+span.subscribers -->
+        <div class="info">
+          <span class="name">다빈</span>
+          <span class="subscribers">1M subscribers</span>
+        </div>
+      </div>
+      <button class="subscribe">subscribe</button>
+    </div>
+  </section>
+  <!-- UPNEXT//playlist -->
+  <section class="upNext">
+    <span class="title">Up next</span>
+    <ul>
+      <li class="item">
+        <div class="img"><img src="image/relax-gb9470c1fb_640.jpg" alt=""></div>
+        <div class="info">
+          <span class="title">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum voluptate molestias iusto, id ipsa modi omnis corrupti, accusamus corporis at obcaecati eaque eius sequi ex quibusdam natus ducimus minima!          </span>
+          <span class="name">
+            사람
+          </span>
+          <span class="views">
+            82k
+          </span>
+        </div>
+        <button class="moreBtn">    <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+      </li>
+      <li class="item">
+        <div class="img"><img src="image/french-bulldog-gee4af0258_640.png" alt=""></div>
+        <div class="info">
+          <span class="title">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero distinctio nemo laboriosam quidem labore corporis debitis possimus, commodi, nihil cupiditate fugit repudiandae ipsam modi quia tenetur, sequi accusantium soluta iure?
+          </span>
+          <span class="name">
+            불독
+          </span>
+          <span class="views">
+            2k
+          </span>
+        </div>
+        <button class="moreBtn"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+      </li>
+      <li class="item">
+        <div class="img"><img src="image/lion-gceb226516_640.jpg" alt=""></div>
+        <div class="info">
+          <span class="title">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero distinctio nemo laboriosam quidem labore corporis debitis possimus, commodi, nihil cupiditate fugit repudiandae ipsam modi quia tenetur, sequi accusantium soluta iure?
+          </span>
+          <span class="name">
+            사자
+          </span>
+          <span class="views">
+            8k
+          </span>
+        </div>
+        <button class="moreBtn"><i class="fa-solid fa-ellipsis-vertical"></i> </button>
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+</body>
+</html>
