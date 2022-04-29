@@ -5,9 +5,42 @@
 - 깊이우선탐색(DFS) 
   - 재귀, 반복으로 할 수 있는데 반복으로 할때 스택을 사용함.
   - 마지막에 저장된 것부터 꺼내는 방법으로 탐색
-- 너비우선탐색(BFS) - 큐
+
+```python
+# 자주 쓰는 코드 
+from collections import defaultdict
+graph = defaultdict(list)  #set을 사용하면, 순서가 정렬됨 # add
+
+for i in range(0, len(lst), 2):
+    a = lst[i]
+    b = lst[i+1]    
+    graph[a].append(b)
+    graph[b].append(a)
+    
+from pprint import pprint
 
 
+
+
+stack = []
+visited = []
+
+stack.append(1)
+visited.append(1)
+cnt = 0
+while stack:
+    cnt += 1
+    tmp = stack[-1]
+    for node in graph[tmp]:
+        if node not in visited:
+            stack.append(node)
+            visited.append(node)
+            break  ##다음후보로 넘어가지 말라고
+    else:
+        stack.pop()
+    
+print(visited)
+```
 
 ```python
 stack
@@ -247,7 +280,7 @@ for i in range(0, len(lst), 2):
 
 
 from collections import defaultdict
-graph = defaultdict(list)
+graph = defaultdict(list)  #set?
 
 for i in range(0, len(lst), 2):
     a = lst[i]
@@ -273,7 +306,7 @@ while stack:
         if node not in visited:
             stack.append(node)
             visited.append(node)
-            break
+            break  ##다음후보로 넘어가지 말라고
     else:
         stack.pop()
     
@@ -302,7 +335,16 @@ def func(tmp):
 
 func(1)
 print(visited)
-
+# visited = []
+# def func(tmp):
+#    
+#    for node in graph[tmp]:
+#        if node not in visited:
+#			visited.append(tmp)
+#            func(node)
+# visited.append(1)
+# func(1)
+# print(visited)
 
 # stack에 넣을 때 visited에 append.
 # 따라서 처음 실행할 때 visited에 input값을 넣어주어야 한다.
@@ -317,6 +359,8 @@ func(1)
 print(visited)
 #[1, 2, 4, 6, 5, 7, 3]
 ```
+
+알고리즘 인터뷰
 
 ```python
 #스택을 이용한 반복구조로 구현 - 직관적
@@ -343,46 +387,3 @@ graph = {
 print(f'iterative_dfs: {iterative_dfs(1)}')
 #iterative_dfs: [1, 4, 3, 5, 7, 6, 2]
 ```
-
-```python
-# https://www.youtube.com/watch?v=7C9RgOcvkvo
-#재귀적으로 구현
-#그래프에 대한 정보, 방문처리
-#재귀적으로 방문하지 않은 노드들을 방문한다는 의미에서, 최대한 깊게 dfs로 방문할수있음
-def recursive_dfs(v, discoverd = []):
-    discoverd.append(v)
-    for w in graph[v]:
-        if w not in discovered:
-            discoverd = recursive_dfs(w, discoverd)
-        return discoverd
-
-
-
-def dfs(graph, v, visited):
-    visited[v] = True
-    #방문했다는 의미로, 해당 노드의 번호를 출력하도록
-    print(v, end=' ')  #1 2 7 6 8 3 4 5
-    #현재 노드와 연결된 다른 노드를 재귀적으로 방문
-    for i in graph[v]:
-        if not visited[i]:
-            dfs(graph, i, visited)
-
-#탐색순서 1, 2, 7, 6, 8, 3, 4, 5
-graph = [
-    [],
-    [2, 3, 8],
-    [1, 7],
-    [1, 4, 5],
-    [3, 5],
-    [3, 4],
-    [7],
-    [2, 6, 8],
-    [1, 7]
-]
-#각 노드가 방문된 정보 표현(1차원 리스트)
-visited = [False] * 9  #-1로 처리할 수도 있지만, 그냥 idx 0을 사용하지 않는게 좋음!
-                        #그래야만 문제에서 나온 idx0을 출력에 mapping하지 않을수 있음
-#함수호출
-dfs(graph, 1, visited)
-```
-

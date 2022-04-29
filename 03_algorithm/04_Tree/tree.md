@@ -670,8 +670,13 @@ print(heapq.heappop(heap))
 print(heap) #[20, 50]
 
 print(heapq.heappop(heap)) 
-print(heap) #[50]  #힙큐는 최소힙만 들어감
+print(heap) #[50]  #힙큐는 최소힙만 들어감  # pop 말고 인덱싱도 사용가능
 #최대로 쓰려면 (-a, a) 넣어서
+
+heapq.heappush(heap, 50)
+heapq.heappush(heap, 10)
+heapq.heappush(heap, 20)
+print(heap) # [10, 50, 20]
 ```
 
 ---
@@ -698,4 +703,7 @@ a.right = c
 ```
 
 - 이진탐색트리- > 좌우간에 대소관계 존재
+
 - 힙->부모자식간에 대소관계 존재
+
+  
