@@ -11,7 +11,6 @@
   - prac1.cinema
   - prac2.shop
   - 참조
-
 - [03_algorithm](03_algorithm)
   - [01_List](03_algorithm/01_List)
   - [02_Stack](03_algorithm//02_Stack)
@@ -20,10 +19,13 @@
   - [05_완전검색&그리디](03_algorithm/05_완전검색&그리디)
   - [06_분할정복&백트래킹](03_algorithm/06_분할정복&백트래킹)
   - [07_그래프](03_algorithm/07_그래프)
-
 - [04_django](04_django)
-
 - [05_java](05_java)
+- [06_javascript](06_javascript)
+- [07_vue](07_vue)
+
+
+
 
 - [problem_solving](problem_solving)
   - 01_baekjoon_none // other repository
