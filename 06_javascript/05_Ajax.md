@@ -1,6 +1,6 @@
 ## AJAX(Asynchronous JavaScript And XML)
 
-- XMLHHttpRequest 객체를 활용 (XHR)
+- XMLHttpRequest 객체를 활용 (XHR)
 - XML = extended Markup Language_내가 원하는 태그명 작성
 - JSON, XML, HTML 그리고 일반 텍스트 형식 등을 포함한 다양한 포맷을 주고받을 수 있음
 - ajax의 x가 xml을 의미하긴 하지만, 요즘은 더 가벼운 용량과 js의 일부라는 장점때문에 json을 더 많이 사용함
@@ -14,9 +14,11 @@
 
 
 
-##### XMLHHttpRequest 객체
+##### XMLHttpRequest 객체
 
 -  새로고침 없이 서버에 요청해 데이터를 받아올 수 있음
+-  XMLHttpRequest(XHR)는 AJAX 요청 instance를 생성하는 Web API이다. 
+   XHR객체를 활용하여 브라우저와 서버 간의 네트워크 요청을 전송할 수 있다.
 
 [JSONPlaceholder - Free Fake REST API (typicode.com)](https://jsonplaceholder.typicode.com/)
 
@@ -250,6 +252,8 @@ promise에 있는 메서드들은 return 값이 다 프로미스로 이어지게
 
 **Promise based HTTP client for the browser (and Node.js)**
 
+axios는 XHR(XMLHttpRequest)을 보내고 응답 결과를 Promise 객체로 반환해주는 라이브러리이다.
+
 알아서 parsing 해줌
 
 싱글스레드 -> event loop -> async -> callback -> promise -> axios
@@ -260,7 +264,7 @@ CDN 가져오기
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script> 
     axios.get('https://jsonplaceholder.typicode.com/todos/1') //promise return 
-	.then(..) //.then(function(res){console.log(res)})
+	.then(..) //.then(function(res){console.log(res)})   요청이 끝나면 then ~
 	.catch(..)
 
 </script>
@@ -275,7 +279,7 @@ const response = axios.get('https://jsonplaceholder.typicode.com/todos/1')
     console.log(response)})
     
     
-    
+//
 const response = axios.get('https://jsonplaceholder.typicode.com/todos/1')  //reqeust.send()
 	.then(res =>{     //const todo = request.response
         console.log(res)
@@ -284,8 +288,22 @@ const response = axios.get('https://jsonplaceholder.typicode.com/todos/1')  //re
 
 
 </script>
+```
 
+```js
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+axios({ //해당url로 요청을 보냄//view함수 실행
+        method:'post',
+        url: `/accounts/${personPk}/follow/`,
+        headers: {'X-CSRFToken':csrftoken}
+      })
+      .then(res=>{    //url->view->then
+```
 
+```js
+      <form data-person-pk="{{person.pk}}" id="follow-form" method="POST">
+    const personPk = form.dataset.personPk
 ```
 
 
@@ -338,6 +356,4 @@ const response = axios.get('https://jsonplaceholder.typicode.com/todos/1')  //re
     fetchDogImages()
       .catch(err => console.error(err))
 ```
-
-
 
