@@ -8,3 +8,11 @@ cd my-first-app
 npm run serve
 ```
 
+```
+vue create my-router-app
+cd my-router-app   //ls 시,  node_modules있는 곳  // code .
+# vue router plugin
+vue add router
+yy
+```
+
