@@ -1,5 +1,7 @@
 # VUE
 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 ## Front-End Development
 
 - HTML, CSS & JS를 활용해 데이터를 볼 수 있게 만들어줌
@@ -61,6 +63,8 @@
 
 
 ## Vue.js
+
+[공식문서 api](https://kr.vuejs.org/v2/api/#%EC%98%B5%EC%85%98-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%ED%9B%85)
 
 - **data가 변화하면 dom이 변경**
 
@@ -145,7 +149,7 @@
       </script>
     ```
 
-  - 
+    
 
 - `디렉티브`
 
@@ -188,9 +192,11 @@
 
 - `v-bind`
 
-  - :로 대체해서 씀
+  - `:`로 대체해서 씀
 
 - `v-on`
+
+  - `addeventlistener`
 
   - ```HTML
     <button v-on:click="alertHello">button</button>
@@ -230,4 +236,5 @@
 
 1. 뷰 인스턴스가 끝나면 id와 el연결 (beforemount)
 2. created로 외부 api에서 초기 데이터 받아올때 많이 사용
-3. ![The Vue Instance Lifecycle](images/lifecycle.png)
+3. <img src="images/lifecycle.png" alt="The Vue Instance Lifecycle" style="zoom:50%;" />.
+
