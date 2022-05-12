@@ -16,3 +16,7 @@ vue add router
 yy
 ```
 
+```
+npm i
+```
+
