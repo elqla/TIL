@@ -1,0 +1,11 @@
+youtube_project폴더 하위에
+.env.local 파일 생성
+VUE_APP_YOUTUBE_API_KEY=key적기
+
+
+App.vue
+<script>
+const API_KEY  = process.env.VUE_APP_YOUTUBE_API_KEY
+const API_URL = 'https://www.googleapis.com/youtube/v3/search'
+
+

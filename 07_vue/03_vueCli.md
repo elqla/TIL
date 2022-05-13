@@ -193,6 +193,8 @@ props:{  //키
 ```
 
 -  .native 는 기본요소를 무시하고 상위컴포넌트에 있는 이벤트를 실행시킨다
+-  emit이벤트를 무시하고, 현 templete의 click이벤트를 발생시킴
+-  [native](https://v3.ko.vuejs.org/guide/migration/v-on-native-modifier-removed.html#%E1%84%80%E1%85%A2%E1%84%8B%E1%85%AD)
 - ![image-20220510232130372](images/image-20220510232130372.png).
 - ![image-20220510232400310](images/image-20220510232400310.png).
 - 추후 추가하기
