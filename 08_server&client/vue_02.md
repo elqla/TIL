@@ -63,6 +63,51 @@ router.beforeEach((to, from, next) =>{
 })
 ```
 
+```js
+router.beforeEach((to, from, next) => {
+  // 이전 페이지에서 발생한 에러메시지 삭제
+  store.commit('SET_AUTH_ERROR', null)
+
+  const { isLoggedIn } = store.getters
+
+  const noAuthPages = ['login', 'signup']
+
+  const isAuthRequired = !noAuthPages.includes(to.name)
+
+  if (isAuthRequired && !isLoggedIn) {
+    alert('Require Login. Redirecting..')
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+
+  if (!isAuthRequired && isLoggedIn) {
+    next({ name: 'articles' })
+  }
+})
+
+/*
+Navigation Guard 설정
+  (이전 페이지에서 있던 에러 메시지 삭제)
+
+
+  0. router 에서 이동 감지
+
+  1. 현재 이동하고자 하는 페이지가 로그인이 필요한지 확인
+  
+  2. 로그인이 필요한 페이지인데 로그인이 되어있지 않다면
+    로그인 페이지(/login)로 이동
+
+  3. 로그인이 되어 있다면
+    원래 이동할 곳으로 이동
+  
+  4. 로그인이 되어있는데 /login, /signup 페이지로 이동한다면
+    메인 페이지(/)로 이동
+    
+
+*/
+```
+
 
 
 # Vuex
@@ -425,7 +470,7 @@ export default {
 
 
 
-
+- createArticle, editArticle
 
 ```js
     fetchArticle({ commit, getters }, articlePk) {
@@ -452,7 +497,8 @@ export default {
           }
         })
     },
-
+        
+//article new와 edit은 articleform 공유
     createArticle({ commit, getters }, article) {
       /* 게시글 생성
       POST: articles URL (게시글 입력정보, token)
@@ -464,33 +510,9 @@ export default {
       */
       
       axios({
-        url: drf.articles.articles(),
+        url: drf.articles.articles(),         //create라 인자 필요 없음 !
         method: 'post',
         data: article,
-        headers: getters.authHeader,
-      })
-        .then(res => {
-          commit('SET_ARTICLE', res.data)
-          router.push({
-            name: 'article',
-            params: { articlePk: getters.article.pk }
-          })
-        })
-    },
-
-    updateArticle({ commit, getters }, { pk, title, content}) {
-      /* 게시글 수정
-      PUT: article URL (게시글 입력정보, token)
-        성공하면
-          응답으로 받은 게시글을 state.article에 저장
-          ArticleDetailView 로 이동
-        실패하면
-          에러 메시지 표시
-      */
-      axios({
-        url: drf.articles.article(pk),
-        method: 'put',
-        data: { title, content },
         headers: getters.authHeader,
       })
         .then(res => {
@@ -543,7 +565,111 @@ export default {
         .then(res => commit('SET_ARTICLE', res.data))
         .catch(err => console.error(err.response))
     },
+```
 
+
+
+```vue
+## ArticleNewView
+<template>
+  <div>
+    <h1>New Article</h1>
+    <article-form :article="article" action="create"></article-form>    
+  <!--비어있는 article 넘김, action을 지정해서, form에서 받아서, create 할수 있게(수정엔 action update해줌)-->
+  </div>
+</template>
+
+<script>
+  import ArticleForm from '@/components/ArticleForm.vue'
+  export default {
+    name: 'AritcleNewView',
+    components: { ArticleForm },
+    data() {
+      return {
+        article: {
+          pk: null,
+          title: '',
+          content: '',       
+        }
+```
+
+![image-20220522210046785](images/image-20220522210046785.png).
+
+X ------->
+
+```js
+# articleForm.vue
+
+    methods: {
+      ...mapActions(['createArticle', 'updateArticle']),
+      onSubmit() {
+        if (this.action === 'create') {
+          this.createArticle(this.newArticle)  //article로 넘어감
+        } else if (this.action === 'update') {
+          const payload = {   //여러 인자 넘겨주기
+            pk: this.article.pk,
+            ...this.newArticle,
+          }
+          this.updateArticle(payload)
+        }
+      },
+    },
+```
+
+```js
+//articles.js
+    updateArticle({ commit, getters }, { pk, title, content}) {  //article  article.pk, title..로 써도됨
+      /* 게시글 수정
+      PUT: article URL (게시글 입력정보, token)
+        성공하면
+          응답으로 받은 게시글을 state.article에 저장
+          ArticleDetailView 로 이동
+        실패하면
+          에러 메시지 표시
+      */
+      axios({
+        url: drf.articles.article(pk),
+        method: 'put',
+        data: { title, content },
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_ARTICLE', res.data)
+          router.push({
+            name: 'article',
+            params: { articlePk: getters.article.pk }
+          })
+        })
+    },
+
+```
+
+
+
+- Edit article에서 fetch해야하는데, 언제 넘어올지 모름. 
+- articleform보다, articleEditView의 created보다 먼저 실행됨 _ ?
+- 따라서
+
+```html
+    <h1>Edit Article</h1>
+    <article-form v-if="isArticle" :article="article" action="update">   v-if is Article걸어주기
+```
+
+```js
+  getters: {
+    isArticle: state => !_.isEmpty(state.article),   // 있다 : 비어있지 않음
+  },
+```
+
+
+
+
+
+
+
+
+
+```js
 		createComment({ commit, getters }, { articlePk, content }) {
       /* 댓글 생성
       POST: comments URL(댓글 입력 정보, token)
@@ -616,6 +742,35 @@ export default {
 
 
 
+```vue
+    <!-- Article Like UI -->
+    <div>
+      Likeit:
+      <button
+        @click="likeArticle(articlePk)"
+      >{{ likeCount }}</button>
+    </div>
+
+	<script>
+	computed: {
+      ...mapGetters(['isAuthor', 'article']),
+      likeCount() {
+        return this.article.like_users?.length
+      }
+    },
+	</script>
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -625,6 +780,10 @@ export default {
 
 
 ---
+
+---
+
+- 그냥 들으면서 적어본것
 
 
 
@@ -661,10 +820,15 @@ beforeEach(()=>{
 optional chaning 
 article = {user:'다빈'}
 article.user?.username
-article?.user.username // 없으면 에러뜨는데, 방지하기 위함  // undefined로 출력됨
+article?.user.username
+
+    isAuthor: (state, getters) => {
+      return state.article.user?.username === getters.currentUser.username
+    },
+
+게시글 아직 안썼을때, user가 아직 안채워져서 없음=> 에러 
+=> 방지하기 위함  // undefined로 출력됨
 ```
-
-
 
 
 
@@ -672,14 +836,12 @@ article?.user.username // 없으면 에러뜨는데, 방지하기 위함  // und
 state.모듈.변수
 모듈 안에 state니까 모듈.state겠지 하는데 아님
 
-getrers
+getters
 state.article.articles
 getters.articles로 바로 접근 가능 // 변수명 겹치지 않도록....!
 
 getters를 computed로만 쓰거나/ 재정의 하는 부분으로 쓰거나
 ```
-
-
 
 
 
