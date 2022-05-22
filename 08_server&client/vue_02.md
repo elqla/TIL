@@ -69,11 +69,11 @@ router.beforeEach((to, from, next) =>{
 
 ### Vuex modules & namespace
 
-<img src="vue_02.assets/image-20220521180324428.png" alt="image-20220521180324428" style="zoom:50%;" />. 
+<img src="images/image-20220521180324428.png" alt="image-20220521180324428" style="zoom:50%;" />. 
 
 vuex는 store/index.js에 사용하지만, App이 커질수록 파일이 커지므로 modules 폴더를 만들어 분리해준다.
 
-![image-20220521180718383](vue_02.assets/image-20220521180718383.png)
+![image-20220521180718383](images/image-20220521180718383.png)
 
 - 모듈별 분리: namespaced: true 적용
 

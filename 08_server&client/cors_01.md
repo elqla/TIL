@@ -78,7 +78,9 @@ INSTALLED_APPS = [
     "corsheaders",
 MIDDLEWARE = [  # 뭐가 먼저쓰이는지 중요
     "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware", #CommonMiddleware보단 위에 위치
+    #"django.middleware.common.CommonMiddleware", #CommonMiddleware보단 위에 위치
+    
+# 특정 origin 에게만 교차 출처 허용
 CORS_ALLOWED_ORIGINS = [
     # vue local host
     "http://localhost:8080",
@@ -107,13 +109,12 @@ CORS_ALLOWED_ORIGINS = [
 
 **JWT**
 
-- 
-
 
 
 ### 'dj-rest-auth' & 'django-allauth'
 
 ```python
+#회원가입
 pip install django-allauth
 pip install dj-rest-auth
 ```
@@ -134,11 +135,12 @@ INSTALLED_APPS = (
     'dj_rest_auth'   # signup 제외 auth 관련 담당
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'oauth2_provider.contrib.rest_framework.TokenAuthentication',  ##
+        'oauth2_provider.contrib.rest_framework.TokenAuthentication',  ##'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         # 모두에게 허용
        #'rest_framework.permissions.AllowAny',
+#        인증된 사용자만 모든일이 가능 / 비인증 사용자는 모두 401 Unauthorized
         # login required //login signup제외한 모든! //비인증시 401
         'rest_framework.permissions.IsAuthenticated',
         
@@ -156,6 +158,8 @@ urlpatterns = [
 토큰 발급
 
 ![image-20220516152501622](images/image-20220516152501622.png).
+
+#login 시, headers비워져있는지 확인.. 
 
 모델에 key, create_at, user_id 저장됨 ( 토큰생성 )
 
