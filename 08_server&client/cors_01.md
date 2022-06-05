@@ -180,7 +180,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     ...,
-    'django.contrib.sites',  #마지막 에 작성했네..
+    'django.contrib.sites',  #마지막에 작성함,  반드시 site_id 
 SITE_ID = 1  #allauth사용위함
 #url
 urlpatterns = [
