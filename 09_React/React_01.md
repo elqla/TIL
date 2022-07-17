@@ -23,7 +23,7 @@
 
   
 
-- [create-react-app.dev](create-react-app.dev)
+- [create-react-app.dev](https://create-react-app.dev/)
 
 - node.js 준비
 
@@ -33,16 +33,35 @@
   npm start
   ```
 
+- cf) react router 설치
+
+- ```bash
+  npm install --save react-router
+  ```
+
+- cf) react router dom 설치
+
+- ```bash
+  npm i react-router-dom
+  ```
+
 - cf)  redux toolkit 
 
 - ```bash
   npm install @reduxjs/toolkit
+  
+  npm install redux
   
   # Redux + Plain JS template
   npx create-react-app my-app --template redux
   
   # Redux + TypeScript template
   npx create-react-app my-app --template redux-typescript
+  ```
+
+
+- ```bash
+  npx create-react-app my-app --template redux
   ```
 
   
