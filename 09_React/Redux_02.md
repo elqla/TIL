@@ -243,7 +243,9 @@ root.render(
 
 - useSelector()
 
-  - selector함수를 사용하여 Redux store state의 데이터를 가져올 수 있습니다.
+  - selector함수를 사용하여 Redux store의 state를 바로 가져올 수 있습니다.
+
+  - `useSelector((state)=>state);`
 
     ```js
     //home.js
@@ -306,7 +308,7 @@ import { useDispatch } from 'react-redux/es/exports';
 const ToDo = ({text, id}) => {
     const dispatch = useDispatch();
     const onClick = () => {
-        dispatch(actionCreators.deleteToDo(id));
+        dispatch(actionCreators.deleteToDo(id));  // (id)를 payload로 보냄
     };
     return (
     <>
@@ -458,19 +460,20 @@ const store = configureStore({ reducer })
 
 ## createSlice
 
-
+위에 했던 createAction, createReducer를 모두 생략해도 됨. 
+createSlice에서 reducer를 재설정 할 수 있으며, action을 만들 수 있다. 
 
 ```js
 //store.js
 
-import {createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { configureStore } from '@reduxjs/toolkit'
 
 
 const toDos = createSlice({
-  name:'toDosReducer',
+  name:'toDosReducer',    //3개 필수 
   initialState:[],
-  reducers:{
+  reducers:{               
     add: (state, action) => {
       state.push({ text: action.payload, id: Date.now() })
     },
@@ -520,5 +523,17 @@ const store = configureStore({reducer: allReducer});
 콘솔찍어보면 combineReducers에서 적어놓은 리듀서 이름으로 배열이 만들어져 있음.
 const data = useSelector(state => state)로 빼왔으면
 data.리듀서이름.map 으로 꺼내기
+```
+
+- 절대경로로 접근할 수 있게하는 방법 (package.json과 같은 경로에 위치한다. )
+
+```js
+//jsconfig.json
+{
+    "compilerOptions": {
+      "baseUrl": "src"
+    },
+    "include": ["src"]
+  }
 ```
 

@@ -52,6 +52,8 @@
   
   npm install redux
   
+  npm install react-redux
+  
   # Redux + Plain JS template
   npx create-react-app my-app --template redux
   
@@ -778,4 +780,48 @@ export default App;
 
 
 
+
+```
+					<CardContent>
+					<Avatar src={consultantImageUrl} sx={{ width: 100, height: 100, marginBottom:1 }} alt="컨설턴트프로필"/>
+					<Forflex>
+						<Typography gutterBottom variant="h6" component="div">
+							{consultantNickname} 컨설턴트님
+						</Typography>
+						<Typography gutterBottom variant="h6" component="div" >
+							{consultingDate}일 
+							{/* <Typography gutterBottom variant="body2" component="span" sx={{paddingLeft:1}} color="error">{!isActive ? '예약불가' : ''}</Typography> */}
+						</Typography>
+					</Forflex>
+
+					<Line />
+					<Card sx={{ width: 100 }}>
+						<CardMedia
+							component="img"
+							height="140"
+							image={resultImageUrl}
+							alt="green iguana"
+						/>
+					</Card>
+
+
+					<RequestBox>
+						{bestColorSet}
+						{worstColorSet}
+						<Typography variant="body2" color="text.secondary">
+							{comment}
+						</Typography>
+					</RequestBox>
+				</CardContent>
+
+			<CardActions>
+				<div id="request-submitbtn">
+					<Button size="small" color="primary">
+					</Button>
+					<Button size="small" color="error">
+						예약취소
+					</Button>
+				</div>
+			</CardActions>
+```
 
