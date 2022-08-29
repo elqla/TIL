@@ -2,58 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45dcd3ee-acd5-4a3e-a243-d2d27fa29ae6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/05_study/05.09/3055_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_python/0120.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_python/dictionary.md" beforeDir="false" afterPath="$PROJECT_DIR$/../01_python/dictionary.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_python/oop.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_python/oop.super.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_python/palindrome.md" beforeDir="false" afterPath="$PROJECT_DIR$/../01_python/palindrome.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../04_django/01_Templete, view, Rounting.md" beforeDir="false" afterPath="$PROJECT_DIR$/../04_django/01_Templete, view, Rounting.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../04_django/03_model.md" beforeDir="false" afterPath="$PROJECT_DIR$/../04_django/03_model.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../04_django/07_auth.md" beforeDir="false" afterPath="$PROJECT_DIR$/../04_django/07_auth.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../04_django/09_Model_relationship2.md" beforeDir="false" afterPath="$PROJECT_DIR$/../04_django/09_Model_relationship2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../04_django/10_RESTAPI.md" beforeDir="false" afterPath="$PROJECT_DIR$/../04_django/10_RESTAPI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../04_django/11_drf_pjt.md" beforeDir="false" afterPath="$PROJECT_DIR$/../04_django/11_drf_pjt.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07_vue/01_vue.md" beforeDir="false" afterPath="$PROJECT_DIR$/../07_vue/01_vue.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/03_swea/13897_토너먼트카드게임.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/03_swea/14238_최소이동거리.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/03_swea/14282_최소비용.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/03_swea/4366_정식이의 은행업무.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.01/boj_start_link.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.01/menu_re.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.04/연구소.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.04/테트로미노.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.07/19238_not.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.07/sw_1949.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.07/순위검색.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.18/실패율.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.22/17141_연구소2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.22/오픈채팅방.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.25/SWEA2477 차량정비소.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.25/백준17142 연구소3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.25/후보키.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.29/17472_다리만들기.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/04.29/비밀지도.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.11/kakao_not.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.11/비숍.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.18/1959_두개의 숫자열.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.18/토마토.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.25/2636_치즈.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.28/18405_경쟁적 전염.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.28/jungon.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.28/신규아이디추천.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.4/2304창고다각형.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.4/2628종이자르기.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/3.4/백준 2635.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/else/1244 스위치켜고끄기.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/else/색종이.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/else/수열.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/else/일곱난쟁이.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12_blockchain/p2p/00_환경설정.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12_blockchain/p2p/05_p강의5(미완).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12_blockchain/p2p/pracfolder/Day4/FundRaising.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12_blockchain/p2p/pracfolder/Day5_A1_deployContract.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12_blockchain/p2p/블록체인 정보.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/problem_solving.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/problem_solving.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_baekjoon_none/연습.py" beforeDir="false" afterPath="$PROJECT_DIR$/01_baekjoon_none/연습.py" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1350654588">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="9" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="549517333">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="2444" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="2444" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="2" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/01_baekjoon_none/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="21" column="38" lean-forward="true" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,9 +101,48 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/01_baekjoon_none/연습.py" />
+        <option value="$PROJECT_DIR$/01_baekjoon_none/12865_평범한배낭.py" />
+        <option value="$PROJECT_DIR$/01_baekjoon_none/input_1.txt" />
+        <option value="$PROJECT_DIR$/01_baekjoon_none/test.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="697" />
+    <option name="width" value="1232" />
+    <option name="height" value="1048" />
+  </component>
   <component name="ProjectId" id="26uQ3gQVaE6CBijwUdlSQDtLOF3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="3055.py" type="b2602c69:ProjectViewProjectNode" />
+              <item name="problem_solving" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="3055.py" type="b2602c69:ProjectViewProjectNode" />
+              <item name="problem_solving" type="462c0819:PsiDirectoryNode" />
+              <item name="01_baekjoon_none" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -86,7 +153,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myShowVariablesByDefault" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -97,28 +167,19 @@
       <recent name="C:\Users\SSAFY_dabeen\Desktop\elqla_git\TIL\problem_solving\study\04.01" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.3055_">
-    <configuration name="비밀지도 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\SSAFY_dabeen\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/study/04.29" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/study/04.29/비밀지도.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.test">
     <configuration name="다트게임 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -140,19 +201,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="다트게임" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="12865_평범한배낭" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="problem_solving" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\SSAFY_dabeen\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/study/05.02" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/01_baekjoon_none" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/study/05.02/다트게임.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/01_baekjoon_none/12865_평범한배낭.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -182,27 +243,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="3055" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="problem_solving" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/05_study/05.09" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\SSAFY_dabeen\Desktop\elqla_git\TIL\problem_solving\05_study\05.09\3055.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="3055_" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="problem_solving" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -216,6 +256,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/05_study/05.09/3055_.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="연습" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="problem_solving" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\multicampus\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/01_baekjoon_none" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/01_baekjoon_none/연습.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -266,24 +327,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="problem_solving" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/01_baekjoon_none" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/01_baekjoon_none/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.비밀지도 (1)" />
-      <item itemvalue="Python.다트게임" />
-      <item itemvalue="Python.3055" />
+      <item itemvalue="Python.다트게임 (1)" />
       <item itemvalue="Python.3055 (1)" />
       <item itemvalue="Python.3055_" />
+      <item itemvalue="Python.12865_평범한배낭" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.12865_평범한배낭" />
+        <item itemvalue="Python.다트게임 (1)" />
         <item itemvalue="Python.3055_" />
         <item itemvalue="Python.3055 (1)" />
-        <item itemvalue="Python.3055" />
-        <item itemvalue="Python.다트게임" />
-        <item itemvalue="Python.비밀지도 (1)" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="45dcd3ee-acd5-4a3e-a243-d2d27fa29ae6" name="Default Changelist" comment="" />
@@ -294,20 +379,57 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="558" y="0" width="985" height="838" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23790322" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.16193181" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3275862" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3275862" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3275862" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -336,5 +458,35 @@
         <watch expression="stack" language="Python" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/01_baekjoon_none/연습.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01_baekjoon_none/12865_평범한배낭.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01_baekjoon_none/input_1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01_baekjoon_none/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="21" column="38" lean-forward="true" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
