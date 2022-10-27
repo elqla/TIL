@@ -43,8 +43,3 @@ npx create-next-app
 ```
 
 
-
-
-
-
-
