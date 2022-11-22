@@ -45,7 +45,7 @@
     /* 
     @ 먼저 실행 후 컴포넌트 실행됨
     @ 언제나 object를 반환하며 키를 가짐(ex: props, products..)
-    @ csr되지 실행되지 않음 -> credential code 
+    @ csr시 실행되지 않음 -> credential code 
     */
     if (!data) {
       return {
@@ -100,13 +100,13 @@
   
 - context vs useRouter (컴포넌트 함수와 getstaticProps()에서 매개변수를 추출할때의 차이)
 
-  - 컴: 컴 내부에서 사용가능, 추출된 ID 사용 혹은 백에 데이터를 패칭할대 쓰임 -> 오직 브라우저에서만 이루어짐
+  - 컴: 컴 내부에서 사용가능, 추출된 ID 사용 혹은 백에 데이터를 패칭할때 쓰임 -> 오직 브라우저에서만 이루어짐
   - getstaticprops로 데이터를 준비해 페이지 사전렌더링시, 서버에서 이루어짐
     - getstaticprops는 컴포넌트 함수보다 `먼저` 실행됨
     - 서버상에서 getstaticprops로 구축하려면
     - getstaticprops 내부의 동적경로 부분에 접근
     -  매개변수로 컴포넌트에 대한 데이터를 준비해야함
-    - ![image-20221026103359127](images/image-20221026103359127.png)
+    - ![image-20221026103359127](images/image-20221026103359127.png) 
     -  nextJs가 모든 페이지를 사전생성하나 `동적페이지`에선 그러지 않음 
     - 대괄호로 시작하는 파일명 -> 여러 페이지로 이루어지기 때문에 서버에서 그때그때 생성되는데 getStaticProps를 써서 동작하지 않음
     - 비동기 처리를 지원함: `getStaticPaths(){...}` page component에만 추가할 수 있음
@@ -396,7 +396,7 @@ export async function getServerSideProps(context) {
 
 # Fetching
 
-### clientSide Data Fetching
+## clientSide Data Fetching
 
 - 갱신 주기가 잦은 데이터 - 주식 데이터 등
 
@@ -505,7 +505,8 @@ const LastSalesPage = () => {
   }
 
   if (!data || !sales) {
-    return <p>Loading...</p>;
+      //return 을 쓰면 안될듯..?
+     <p>Loading...</p>;
   }
 
   return (
