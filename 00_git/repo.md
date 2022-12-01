@@ -26,3 +26,11 @@ git push origin -u master
 
 https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository 
 
+
+
+### git 잘못올렸을때
+
+```
+git rm --cached -r .idea/
+```
+
