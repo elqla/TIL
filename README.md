@@ -20,6 +20,7 @@
 - [10_WebRTC](10_WebRTC)
 - [11_css](11_css)
 - [12_blockchain](12_blockchain)
+- [13_typescript](13_typescript)
 - [14_CI-CD](14_CI-CD)
 - [15_unity](15_unity)
 - [16_nextJs](16_nextJs)
