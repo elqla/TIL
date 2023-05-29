@@ -16,3 +16,6 @@ https://docs.flutter.dev/get-started/install
 - cd myapp
 
 - flutter run (대신 vscode extension으로 실행하는 것 추천)
+
+- https://pub.dev/
+
