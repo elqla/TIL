@@ -28,5 +28,9 @@
 - [18_dart](18_dart)
 - [19_flutter](19_flutter)
 - [20_graphql](20_graphql)
+- [21_android](21_android)
+- [22_ios](22_ios)
+- [23_jquery](23_jquery)
+- [24_nodejs](24_nodejs)
 
 - [problem_solving](problem_solving)
