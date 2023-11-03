@@ -6,3 +6,10 @@
 2. babel
 
 - 최신문법으로 개발한 js를 이전 브라우저에서도 돌아가도록 함.
+
+```
+npm i -D @babel/cli @babel/core @babel/preset-env babel-loader clean-webpack-plugin copy-webpack-plugin core-js cross-env html-webpack-plugin source-map-loader terser-webpack-plugin webpack webpack-cli webpack-dev-server
+----------
+npm i three
+----------
+```
