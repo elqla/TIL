@@ -32,5 +32,6 @@
 - [22_ios](22_ios)
 - [23_jquery](23_jquery)
 - [24_nodejs](24_nodejs)
+- [25_threejs](25_threejs)
 
 - [problem_solving](problem_solving)
