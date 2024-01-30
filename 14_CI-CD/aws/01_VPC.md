@@ -18,7 +18,7 @@ RFC에 명시된, 1918에 명시된 ip주소를 vpc의 프라이빗 addr로 쓸 
 
 public하게
 
-<img src="./img/1.png" />
+<img src="./img/1.png" width="50%" />
 
 ### (2) 서브넷
 
