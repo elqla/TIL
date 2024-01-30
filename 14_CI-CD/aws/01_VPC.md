@@ -27,7 +27,7 @@ public하게
 - 172.31.0.0/24 // 주소가 달라야 함
 - 172.31.0.2/24
 
-<img src="./img/2.png" />
+<img src="./img/2.png"  width="50%" />
 
 ### (3) route
 
@@ -35,7 +35,7 @@ public하게
 
 - internet gateway로 나감(igw~~)
 
-<img src="./img/3.png" />
+<img src="./img/3.png"  width="50%" />
 
 (사진 위 - local vpc, 내부에서만 패킷을 보낼 수 있는)
 (사진 아래 - gateway/ 0.0.0.0/0 anywhere \_\_ vpc로 향하지 않는건 모두 인터넷으로 보냄)
@@ -54,8 +54,8 @@ public하게
   - mywebservers (security), mybackends(security) \_\_mybackserver 웹서버만 백서버로 접근하게 하고 싶을것
 
 aws 장점: auto scailing
-<img src="./img/4.png" />
-<img src="./img/5.png" />
+<img src="./img/4.png"  width="50%" />
+<img src="./img/5.png"  width="50%" />
 
 frontend는 어디서든 접근가능하게 하고, backend보안그룹에 프론트엔드 groupid를 소스로 넣으면, 오토스케일링될때 저거만 붙이면 되기때문에 자유롭고 안전하게 됨.
 원하는 포트의 트래픽만 받을 수 있음.
@@ -81,7 +81,7 @@ frontend는 어디서든 접근가능하게 하고, backend보안그룹에 프�
 
 - 밖의 레포지토리 및 배포 등 해야하는데, 이는 nat gateway로 제공됨.
 
-<img src="./img/6.png" />
+<img src="./img/6.png"  width="50%" />
 
 왼쪽의 서버들은 nat gateway를 통해 public하게 왔다갔다 다운받고 전달받고 함.
 -> 이점: 외부에서 private에 들어갈수가 없음.
