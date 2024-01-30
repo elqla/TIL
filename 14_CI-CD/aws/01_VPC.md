@@ -54,8 +54,10 @@ public하게
   - mywebservers (security), mybackends(security) \_\_mybackserver 웹서버만 백서버로 접근하게 하고 싶을것
 
 aws 장점: auto scailing
-<img src="./img/4.png"  width="50%" />
-<img src="./img/5.png"  width="50%" />
+
+<img src="./img/4.png"  width="50%" /> 
+
+<img src="./img/5.png"  width="50%" /> 
 
 frontend는 어디서든 접근가능하게 하고, backend보안그룹에 프론트엔드 groupid를 소스로 넣으면, 오토스케일링될때 저거만 붙이면 되기때문에 자유롭고 안전하게 됨.
 원하는 포트의 트래픽만 받을 수 있음.
