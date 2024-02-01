@@ -141,5 +141,19 @@ VPC network를 availability zone 별로 만들고, acl로 방화벽 정책 만�
 _/
 
 --- 참고 ---
-
 https://www.youtube.com/watch?v=R1UWYQYTPKo&t=315
+----------
+
+
+## 추가로 정리
+
+Q. natgateway써서 private, public을 연결할때 추가비용이 드는데 꼭 연결해야할까?
+A. private의 ecs fargate server에서 ecr 이미지 가져올때 필요해서 사용(이는 vpc endpoint로도 할 수 있음)
+A. aws외부에 있는게 아닌이상 vpc endpoint로도 가능(다만 유지비용 + 데이터 처리비용 생각해야함)
+A. private 에 있는 server에서 문자전송 서비스로 요청 보낼때 origin ip가 고정되어야 해서 사용 
+  - server는 private이라 public ip가 없으니, public e2를 프록시로 두고(고정ip), 전송요청만 해당 server로 나가도록
+  - private인스턴스를 그대로 public에 만들고, alb에서 경로에 따라 타겟그룹 분기 설정을 할 수 있음. 문자전송 api만 public인스턴스로 향하도록
+
+Q. EC2가 public, RDS가 private에 있는게 일반적인 구조 아닌가? 이때도 endpoint를 쓰는게 가능한가
+A. ec2에서 database 접근하는 어플리케이션이 돌아간다면 ec2도 private에 넣는게 좋다.
+
