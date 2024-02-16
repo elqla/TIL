@@ -31,7 +31,7 @@ middleware
 - 응답이 같은 경우 return {code: 'SUCCESS', data: user} 이런식으로 api return 을 줄때
   이걸 interceper 하나로 만들 수 있음.
 
-- res 를 받아서 쓰면 return req.json(user) 이런식으로 쓰는건 지양.
+- res 를 받아서 쓰면 return res.json(user) / 실제데이터말고 가짜데이터로 하고싶을떄도 불편함.
 
 3. 분리 이유.
 
@@ -71,3 +71,56 @@ export class AppController {
   }
 }
 ```
+
+### 3) Implement, Injectable(DI) 알아보기
+
+Implement: TypeScript검사. Error Fix
+
+Injectable: Dependency Injection, Provider
+
+- Injectable을 쓰면 providers에 넣어줘야함..
+
+nest 는 의존성 주입을 해주고, 그걸 프로바이더를 통해함.
+
+예를들면, controller에서
+
+```js
+@Controller()
+export class AppController{
+  constructor(private readonly appService: AppService){
+    // 기존이라면
+    // this.appService = AppService해줘야하는데. 안해줘도 됨.
+  }
+  @Get()
+  getHello(){
+    console.log('hello')
+    return this.appservice.getHello();
+    // new AppService().getHello()--- noooo
+  }
+}
+
+new AppController(new AppService());
+
+// test할때는 ..  예를들면 이런식으로 쓸 수 있다. !
+new AppController(new TestAppService())
+
+```
+
+DB에 salt 값 저장
+
+JAVASCRIPT는 대부분 HEAP에 저장, 호출 스택은 스택에 저장..
+
+Service로 분리했기 때문에 무거워지면 또 분리를 하면 됨
+
+다른 서비스에서 constructure(private..)로 또 가져올 수 있음
+
+log
+sentry, databook, aws cloudwatch - 활용하지 않는 데이터 저장 안하거나 nosql
+
+salt..에...
+
+controller -> service -> repository -> entity
+
+- pm2 로 하고, 로드밸런서 따로 붙임
+
+- 싱글코어로 함.. 여러개 돌ㄹ..ㅣ..ㅁ.. aws, code deploy
