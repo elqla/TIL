@@ -18,7 +18,7 @@ RFC에 명시된, 1918에 명시된 ip주소를 vpc의 프라이빗 addr로 쓸 
 
 public하게
 
-<img src="./img/1.png" />
+<img src="./img/1.png" width="50%" />
 
 ### (2) 서브넷
 
@@ -27,7 +27,7 @@ public하게
 - 172.31.0.0/24 // 주소가 달라야 함
 - 172.31.0.2/24
 
-<img src="./img/2.png" />
+<img src="./img/2.png"  width="50%" />
 
 ### (3) route
 
@@ -35,7 +35,7 @@ public하게
 
 - internet gateway로 나감(igw~~)
 
-<img src="./img/3.png" />
+<img src="./img/3.png"  width="50%" />
 
 (사진 위 - local vpc, 내부에서만 패킷을 보낼 수 있는)
 (사진 아래 - gateway/ 0.0.0.0/0 anywhere \_\_ vpc로 향하지 않는건 모두 인터넷으로 보냄)
@@ -54,8 +54,10 @@ public하게
   - mywebservers (security), mybackends(security) \_\_mybackserver 웹서버만 백서버로 접근하게 하고 싶을것
 
 aws 장점: auto scailing
-<img src="./img/4.png" />
-<img src="./img/5.png" />
+
+<img src="./img/4.png"  width="50%" /> 
+
+<img src="./img/5.png"  width="50%" /> 
 
 frontend는 어디서든 접근가능하게 하고, backend보안그룹에 프론트엔드 groupid를 소스로 넣으면, 오토스케일링될때 저거만 붙이면 되기때문에 자유롭고 안전하게 됨.
 원하는 포트의 트래픽만 받을 수 있음.
@@ -81,7 +83,7 @@ frontend는 어디서든 접근가능하게 하고, backend보안그룹에 프�
 
 - 밖의 레포지토리 및 배포 등 해야하는데, 이는 nat gateway로 제공됨.
 
-<img src="./img/6.png" />
+<img src="./img/6.png"  width="50%" />
 
 왼쪽의 서버들은 nat gateway를 통해 public하게 왔다갔다 다운받고 전달받고 함.
 -> 이점: 외부에서 private에 들어갈수가 없음.
@@ -139,5 +141,26 @@ VPC network를 availability zone 별로 만들고, acl로 방화벽 정책 만�
 _/
 
 --- 참고 ---
-
 https://www.youtube.com/watch?v=R1UWYQYTPKo&t=315
+----------
+
+
+## 추가로 정리
+
+Q. natgateway써서 private, public을 연결할때 추가비용이 드는데 꼭 연결해야할까?
+
+A. private의 ecs fargate server에서 ecr 이미지 가져올때 필요해서 사용(이는 vpc endpoint로도 할 수 있음)
+
+A. aws외부에 있는게 아닌이상 vpc endpoint로도 가능(다만 유지비용 + 데이터 처리비용 생각해야함)
+
+A. private 에 있는 server에서 문자전송 서비스로 요청 보낼때 origin ip가 고정되어야 해서 사용 
+
+  - server는 private이라 public ip가 없으니, public e2를 프록시로 두고(고정ip), 전송요청만 해당 server로 나가도록
+  - private인스턴스를 그대로 public에 만들고, alb에서 경로에 따라 타겟그룹 분기 설정을 할 수 있음. 문자전송 api만 public인스턴스로 향하도록
+
+
+
+Q. EC2가 public, RDS가 private에 있는게 일반적인 구조 아닌가? 이때도 endpoint를 쓰는게 가능한가
+
+A. ec2에서 database 접근하는 어플리케이션이 돌아간다면 ec2도 private에 넣는게 좋다.
+
