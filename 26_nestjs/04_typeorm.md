@@ -56,4 +56,22 @@ npm run db:generate-migration categoryToType
 
 한번 마이그레이션한건, 다시 롤백하기전까진 migrations table에 내용이 있으므로, 롤백하기 전까진 다시 실행이 안됨.
 
-###
+### entities -> dto
+
+https://docs.nestjs.com/openapi/mapped-types
+
+### Exception
+
+exception을 따로 다 생성해줘도 되지만,
+
+class-validator를 통해 처리할 수도 있다.
+
+@IsString() // validation을 하면, 알아서 에러 발생함.
+
+https://docs.nestjs.com/techniques/validation
+
+### Request LifeCycle
+
+https://docs.nestjs.com/faq/request-lifecycle
+
+<img src="./images/lifecycleimg.png" width="50%"/>
