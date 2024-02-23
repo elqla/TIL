@@ -27,3 +27,5 @@ service안에 service를 두고 있어도 되는가?
 - 다만 여러 save중 하나만 된다거나 했을떈? -> transaction을 쓰면 됨.
 
 - transaction 사용 방법도 여러개임
+
+- queryRunner 쓰기
