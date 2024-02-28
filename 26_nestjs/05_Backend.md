@@ -69,3 +69,28 @@ app.useGlobalPipes(
 
 
 ```
+
+### TypeOrm
+
+https://orkhan.gitbook.io/typeorm/docs/find-options
+
+### websocket
+
+- nest g mo events
+
+- nest g ga events
+
+### static
+
+1. server static 쓰는것도 있고
+
+2.
+
+```js
+app.useStaticAssets(process.env.NODE_ENV === "production" ? path.join(__dirname, "..", "..", "uploads") : path.join(__dirname, "..", "uploads"), {
+  prefix: "/uploads",
+});
+app.useStaticAssets(process.env.NODE_ENV === "production" ? path.join(__dirname, "..", "..", "public") : path.join(__dirname, "..", "public"), {
+  prefix: "/dist",
+});
+```
