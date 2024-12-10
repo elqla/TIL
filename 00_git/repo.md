@@ -34,3 +34,5 @@ https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-g
 git rm --cached -r .idea/
 ```
 
+
+
